@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/employee_avatr"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/darker_gray"
+        android:cropToPadding="true"
+        android:scaleType="centerInside"
+        tools:ignore="ContentDescription"/>
+
+    <com.example.andrew65appstask.employee.details.DoubleTextView
+        android:id="@+id/employee_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:header="@string/employee_fname"/>
+
+    <com.example.andrew65appstask.employee.details.DoubleTextView
+        android:id="@+id/employee_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:header="@string/employee_lname"/>
+
+    <com.example.andrew65appstask.employee.details.DoubleTextView
+        android:id="@+id/employee_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:header="@string/employee_birthday"/>
+
+    <com.example.andrew65appstask.employee.details.DoubleTextView
+        android:id="@+id/employee_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:header="@string/employee_age"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/employee_specialty_name"/>
+
+    <include layout="@layout/fragment_specialty"/>
+
+</LinearLayout>

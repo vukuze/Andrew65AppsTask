@@ -1,0 +1,98 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+    }
+}
+
+// Required because retrolambda is on maven central
+repositories {
+    mavenCentral()
+    maven { url "https://clojars.org/repo/" }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.example.andrew65appstask"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+dependencies {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    def androidSupportVersion = '25.3.1'
+    compile "com.android.support:appcompat-v7:$androidSupportVersion"
+    compile "com.android.support:recyclerview-v7:$androidSupportVersion"
+    compile "com.android.support:cardview-v7:$androidSupportVersion"
+
+    def butterknifeVersion = '8.5.1'
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    def retrofitVersion = '2.2.0'
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    def okhttp3Version = '3.6.0'
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+
+    def daggerVersion = '2.10-rc4'
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    def requeryVersion = '1.2.0'
+    compile "io.requery:requery:$requeryVersion"
+    compile "io.requery:requery-android:$requeryVersion"
+    annotationProcessor "io.requery:requery-processor:$requeryVersion"
+
+    def icepickVersion = '3.2.0'
+    compile "frankiesardo:icepick:$icepickVersion"
+    provided "frankiesardo:icepick-processor:$icepickVersion"
+
+    def moxyVersion = '1.5.2'
+    compile "com.arello-mobile:moxy:$moxyVersion"
+    compile "com.arello-mobile:moxy-android:$moxyVersion"
+    provided "com.arello-mobile:moxy-compiler:$moxyVersion"
+    compile "com.arello-mobile:moxy-app-compat:$moxyVersion"
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+    compile 'ru.terrakok.cicerone:cicerone:1.2.1'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'me.tatarka:gradle-retrolambda:3.6.0'
+    compile 'joda-time:joda-time:2.9.7'
+    testCompile 'junit:junit:4.12'
+}
