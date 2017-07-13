@@ -18,7 +18,6 @@ public class EmployeeActivity extends SingleFragmentActivity1
         implements EmployeeFragment.Callbacks {
 
     private static final String EXTRA_SPECIALTY_ID = "specialty_id";
-
     public static Intent newIntent(Context context, int specialtyId) {
         Intent intent = new Intent(context, EmployeeActivity.class);
         intent.putExtra(EXTRA_SPECIALTY_ID, specialtyId);

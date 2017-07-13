@@ -30,6 +30,7 @@ import butterknife.BindView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportAppNavigator;
 import ru.terrakok.cicerone.commands.Back;
+import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 
 public class SpecialtyFragment extends BaseFragmentWithNavigator implements SpecialtyView, BackButtonListener {

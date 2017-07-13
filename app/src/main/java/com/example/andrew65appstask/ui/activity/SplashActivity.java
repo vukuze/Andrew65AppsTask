@@ -10,7 +10,7 @@ import com.example.andrew65appstask.ui.fragment.SplashFragment;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
-import ru.terrakok.cicerone.commands.Forward;
+import ru.terrakok.cicerone.commands.Replace;
 
 public class SplashActivity extends SingleFragmentActivity1 {
 
@@ -45,7 +45,7 @@ public class SplashActivity extends SingleFragmentActivity1 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        navigator.applyCommand(new Forward(Screens.SPLASH_FRAGMENT, null));
+        navigator.applyCommand(new Replace(Screens.SPLASH_FRAGMENT, null));
     }
 
 }

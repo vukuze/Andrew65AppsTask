@@ -12,7 +12,7 @@ import com.example.andrew65appstask.ui.fragment.SpecialtyFragment;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
-import ru.terrakok.cicerone.commands.Forward;
+import ru.terrakok.cicerone.commands.Replace;
 
 public class SpecialtyActivity extends SingleFragmentActivity1 {
 
@@ -50,6 +50,6 @@ public class SpecialtyActivity extends SingleFragmentActivity1 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        navigator.applyCommand(new Forward(Screens.SPECIALTY_FRAGMENT, null));
+        navigator.applyCommand(new Replace(Screens.SPECIALTY_FRAGMENT, null));
     }
 }
