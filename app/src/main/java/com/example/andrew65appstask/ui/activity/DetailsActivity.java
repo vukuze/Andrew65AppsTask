@@ -7,14 +7,14 @@ import android.support.v4.app.Fragment;
 
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
+import com.example.andrew65appstask.cicerone.Screens;
 import com.example.andrew65appstask.ui.fragment.DetailsFragment;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 import ru.terrakok.cicerone.commands.Replace;
 
-public class DetailsActivity extends SingleFragmentActivity1 {
+public class DetailsActivity extends BaseActivity {
 
     private static final String EXTRA_EMPLOYEE_ID = "employee_id";
 

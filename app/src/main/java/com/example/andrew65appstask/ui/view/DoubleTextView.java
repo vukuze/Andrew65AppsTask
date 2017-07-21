@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.employee.details;
+package com.example.andrew65appstask.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
+import com.example.andrew65appstask.cicerone.Screens;
 import com.example.andrew65appstask.presentation.presenter.SpecialtyPresenter;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
-import com.example.andrew65appstask.specialty.BaseSpecialtyAdapter;
-import com.example.andrew65appstask.specialty.BaseSpecialtyHolder;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
+import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
+import com.example.andrew65appstask.db.Specialty;
 import com.example.andrew65appstask.ui.BackButtonListener;
 import com.example.andrew65appstask.ui.activity.EmployeeActivity;
 
@@ -29,8 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportAppNavigator;
-import ru.terrakok.cicerone.commands.Back;
-import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 
 public class SpecialtyFragment extends BaseFragmentWithNavigator implements SpecialtyView, BackButtonListener {

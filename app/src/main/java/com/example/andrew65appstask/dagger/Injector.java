@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.ui;
+package com.example.andrew65appstask.dagger;
 
 /**
  * Предназначен для инжекта зависимостей Dagger.

@@ -8,15 +8,14 @@ import android.util.Log;
 
 import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.Injector;
+import com.example.andrew65appstask.dagger.Injector;
 
 import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
-import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
-public abstract class SingleFragmentActivity1 extends AppCompatActivity implements Injector {
+public abstract class BaseActivity extends AppCompatActivity implements Injector {
 
     protected Navigator navigator;
 

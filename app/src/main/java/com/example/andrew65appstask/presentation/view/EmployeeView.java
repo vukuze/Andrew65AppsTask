@@ -8,5 +8,5 @@ import java.util.List;
 
 @StateStrategyType(SingleStateStrategy.class)
 public interface EmployeeView extends MvpView {
-    void updateItems(List<com.example.andrew65appstask.employee.Employee> employees);
+    void updateItems(List<com.example.andrew65appstask.db.Employee> employees);
 }

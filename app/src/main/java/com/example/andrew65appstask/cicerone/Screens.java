@@ -1,4 +1,4 @@
-package com.example.andrew65appstask;
+package com.example.andrew65appstask.cicerone;
 
 public class Screens {
     public static final String SPLASH_FRAGMENT = "splash_fragment";

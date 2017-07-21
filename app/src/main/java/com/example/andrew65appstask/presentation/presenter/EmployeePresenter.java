@@ -5,17 +5,16 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.employee.AbstractEmployee;
-import com.example.andrew65appstask.employee.Employee;
+import com.example.andrew65appstask.db.AbstractEmployee;
+import com.example.andrew65appstask.db.Employee;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.db.Specialty;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;

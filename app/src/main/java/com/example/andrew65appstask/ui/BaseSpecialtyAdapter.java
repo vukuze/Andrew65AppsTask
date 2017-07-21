@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.specialty;
+package com.example.andrew65appstask.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.specialty.BaseSpecialtyHolder;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.db.Specialty;
 
 import java.util.List;
 

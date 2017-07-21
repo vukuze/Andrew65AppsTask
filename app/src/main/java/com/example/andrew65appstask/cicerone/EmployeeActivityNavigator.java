@@ -1,11 +1,10 @@
-package com.example.andrew65appstask.navigator;
+package com.example.andrew65appstask.cicerone;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
 import com.example.andrew65appstask.ui.activity.DetailsActivity;
 import com.example.andrew65appstask.ui.fragment.DetailsFragment;
 import com.example.andrew65appstask.ui.fragment.EmployeeFragment;

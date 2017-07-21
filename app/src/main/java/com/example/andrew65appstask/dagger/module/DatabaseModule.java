@@ -3,8 +3,7 @@ package com.example.andrew65appstask.dagger.module;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.example.andrew65appstask.Models;
-import com.example.andrew65appstask.dagger.module.AppModule;
+import com.example.andrew65appstask.db.Models;
 import com.example.andrew65appstask.dagger.scope.AppScope;
 
 import dagger.Module;

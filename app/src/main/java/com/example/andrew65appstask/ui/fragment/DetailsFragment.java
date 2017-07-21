@@ -15,16 +15,16 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.employee.DateToStringConverter;
-import com.example.andrew65appstask.employee.Employee;
-import com.example.andrew65appstask.employee.details.DoubleTextView;
-import com.example.andrew65appstask.employee.details.GlideLoggingListener;
+import com.example.andrew65appstask.db.AbstractSpecialty;
+import com.example.andrew65appstask.util.DateToStringFormatter;
+import com.example.andrew65appstask.db.Employee;
+import com.example.andrew65appstask.ui.view.DoubleTextView;
+import com.example.andrew65appstask.util.GlideLoggingListener;
 import com.example.andrew65appstask.presentation.presenter.DetailsPresenter;
 import com.example.andrew65appstask.presentation.view.DetailsView;
-import com.example.andrew65appstask.specialty.AbstractSpecialty;
-import com.example.andrew65appstask.specialty.BaseSpecialtyAdapter;
-import com.example.andrew65appstask.specialty.BaseSpecialtyHolder;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
+import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
+import com.example.andrew65appstask.db.Specialty;
 import com.example.andrew65appstask.ui.BackButtonListener;
 
 import java.util.ArrayList;
@@ -105,8 +105,8 @@ public class DetailsFragment extends BaseFragmentWithNavigator implements Detail
 
         firstNameView.setText(employee.getFName());
         lastNameView.setText(employee.getLName());
-        birthdayView.setText(DateToStringConverter.getBirthday(employee.getBirthday()));
-        ageView.setText(DateToStringConverter.getAge(employee.getBirthday()));
+        birthdayView.setText(DateToStringFormatter.getBirthday(employee.getBirthday()));
+        ageView.setText(DateToStringFormatter.getAge(employee.getBirthday()));
 
         List<Specialty> items = new ArrayList<>();
         for (AbstractSpecialty abstractSpecialty : employee.getSpecialties()) {

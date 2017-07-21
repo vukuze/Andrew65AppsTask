@@ -1,6 +1,4 @@
-package com.example.andrew65appstask.specialty;
-
-import com.example.andrew65appstask.employee.AbstractEmployee;
+package com.example.andrew65appstask.db;
 
 import java.util.List;
 

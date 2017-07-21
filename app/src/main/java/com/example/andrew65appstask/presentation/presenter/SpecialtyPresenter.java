@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.example.andrew65appstask.App;
+import com.example.andrew65appstask.db.Specialty;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
-import com.example.andrew65appstask.specialty.Specialty;
 
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
     private static final String TAG = "SpecialtyPresenter";
 
     private Single<List<Specialty>> chain;
-//    private Disposable disposable = null;
 
     public SpecialtyPresenter() {
         Log.d(TAG, "constructor");
@@ -45,16 +44,7 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
 
     @Override
     public void onBackCommandClick() {
-//        Log.d(TAG, "onBackCommandClick");
-//        disposeChain();
         super.onBackCommandClick();
         router.exit();
     }
-
-//    private void disposeChain() {
-//        if (disposable != null && !disposable.isDisposed()) {
-//            disposable.dispose();
-//            Log.d(TAG, "disposeChain disposed");
-//        }
-//    }
 }

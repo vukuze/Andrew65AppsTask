@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;
-import com.example.andrew65appstask.ui.Injector;
+import com.example.andrew65appstask.dagger.Injector;
 
 import javax.inject.Inject;
 

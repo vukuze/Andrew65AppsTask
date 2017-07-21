@@ -6,15 +6,15 @@ import android.os.Bundle;
 
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
-import com.example.andrew65appstask.navigator.EmployeeActivityNavigator;
+import com.example.andrew65appstask.cicerone.Screens;
+import com.example.andrew65appstask.cicerone.EmployeeActivityNavigator;
 import com.example.andrew65appstask.ui.fragment.EmployeeFragment;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
 
-public class EmployeeActivity extends SingleFragmentActivity1
+public class EmployeeActivity extends BaseActivity
         implements EmployeeFragment.Callbacks {
 
     private static final String EXTRA_SPECIALTY_ID = "specialty_id";

@@ -4,12 +4,13 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.db.JsonToEntityConverter;
-import com.example.andrew65appstask.employee.Employee;
-import com.example.andrew65appstask.employee.EmployeeRestAnswer;
+import com.example.andrew65appstask.cicerone.Screens;
+import com.example.andrew65appstask.util.JsonToEntityConverter;
+import com.example.andrew65appstask.db.Employee;
+import com.example.andrew65appstask.network.EmployeeRestAnswer;
 import com.example.andrew65appstask.network.SixtyFiveAppsRestService;
 import com.example.andrew65appstask.presentation.view.SplashView;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.db.Specialty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +88,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     public void request() {
         disposeChain();
         chain.subscribe(
-                employees -> getViewState().updateItems(employees),
+                employees -> router.replaceScreen(Screens.SPECIALTY_FRAGMENT),
                 throwable -> getViewState().handleErrors(throwable));
     }
 

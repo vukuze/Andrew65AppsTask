@@ -1,11 +1,11 @@
-package com.example.andrew65appstask.specialty;
+package com.example.andrew65appstask.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.specialty.Specialty;
+import com.example.andrew65appstask.db.Specialty;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

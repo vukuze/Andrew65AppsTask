@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.employee;
+package com.example.andrew65appstask.util;
 
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  * из формата Date базы данных в требуемый формат String
  */
 
-public class DateToStringConverter {
+public class DateToStringFormatter {
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 

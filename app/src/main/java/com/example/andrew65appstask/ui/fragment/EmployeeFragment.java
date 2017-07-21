@@ -15,9 +15,9 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
-import com.example.andrew65appstask.employee.DateToStringConverter;
-import com.example.andrew65appstask.employee.Employee;
+import com.example.andrew65appstask.cicerone.Screens;
+import com.example.andrew65appstask.db.Employee;
+import com.example.andrew65appstask.util.DateToStringFormatter;
 import com.example.andrew65appstask.presentation.presenter.EmployeePresenter;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
 import com.example.andrew65appstask.ui.BackButtonListener;
@@ -25,12 +25,9 @@ import com.example.andrew65appstask.ui.BackButtonListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.terrakok.cicerone.Navigator;
-import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.commands.Back;
 import ru.terrakok.cicerone.commands.Forward;
 
@@ -156,7 +153,7 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
             this.employee = employee;
             lNameTextView.setText(this.employee.getLName());
             fNameTextView.setText(this.employee.getFName());
-            ageTextView.setText(DateToStringConverter.getAge(this.employee.getBirthday()));
+            ageTextView.setText(DateToStringFormatter.getAge(this.employee.getBirthday()));
         }
 
         @Override

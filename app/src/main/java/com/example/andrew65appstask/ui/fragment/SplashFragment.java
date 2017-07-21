@@ -16,8 +16,7 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.Screens;
-import com.example.andrew65appstask.employee.Employee;
+import com.example.andrew65appstask.cicerone.Screens;
 import com.example.andrew65appstask.presentation.presenter.SplashPresenter;
 import com.example.andrew65appstask.presentation.view.SplashView;
 import com.example.andrew65appstask.ui.BackButtonListener;
@@ -27,7 +26,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportAppNavigator;
-import ru.terrakok.cicerone.commands.Replace;
 
 public class SplashFragment extends BaseFragmentWithNavigator
         implements SplashView, BackButtonListener {
@@ -71,17 +69,6 @@ public class SplashFragment extends BaseFragmentWithNavigator
                 return null;
             }
         };
-//                command -> {
-//            if (command instanceof Replace) {
-//                Log.d(TAG, "Replace");
-//                Replace cmd = (Replace) command;
-//                if (cmd.getScreenKey().equals(Screens.SPECIALTY_ACTIVITY)) {
-//                    Intent intent = SpecialtyActivity.newIntent(getContext());
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                }
-//            }
-//        };
     }
 
     @Override
@@ -122,14 +109,6 @@ public class SplashFragment extends BaseFragmentWithNavigator
         imageView.setVisibility(isVisible ? View.GONE : View.VISIBLE);
         textView.setText(isVisible ? LOADING_NOW : LOADING_ERROR_FINISH);
         button.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-    }
-
-    /*
-    * Действия, выполняемые в случае успешного завершения сетевых запросов и запросов к БД
-    */
-    public void updateItems(Iterable<Employee> employees) {
-        Log.d(TAG, "updateItems");
-        navigator.applyCommand(new Replace(Screens.SPECIALTY_ACTIVITY, null));
     }
 
     /*
