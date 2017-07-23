@@ -17,12 +17,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    def globalConfiguration = rootProject.ext
+
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
+    buildToolsVersion globalConfiguration.androidBuildToolsVersion
+
     defaultConfig {
         applicationId "com.example.andrew65appstask"
-        minSdkVersion 16
-        targetSdkVersion 25
+        minSdkVersion globalConfiguration.androidMinSdkVersion
+        targetSdkVersion globalConfiguration.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -43,6 +46,8 @@ android {
 }
 
 dependencies {
+//    compile project(":domain")
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -58,10 +63,10 @@ dependencies {
     compile "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
-    def retrofitVersion = '2.2.0'
-    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+//    def retrofitVersion = '2.2.0'
+//    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+//    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+//    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     def okhttp3Version = '3.6.0'
     compile "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"

@@ -18,6 +18,16 @@ allprojects {
     }
 }
 
+ext {
+    //Android
+    androidCompileSdkVersion = 25
+    androidBuildToolsVersion = "25.0.2"
+    androidMinSdkVersion = 16
+    androidTargetSdkVersion = 25
+
+
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
