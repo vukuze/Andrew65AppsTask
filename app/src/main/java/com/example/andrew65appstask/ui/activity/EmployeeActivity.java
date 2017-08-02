@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.cicerone.Screens;
-import com.example.andrew65appstask.cicerone.EmployeeActivityNavigator;
+import com.example.andrew65appstask.navigation.Screens;
+import com.example.andrew65appstask.navigation.EmployeeActivityNavigator;
 import com.example.andrew65appstask.ui.fragment.EmployeeFragment;
 
 import ru.terrakok.cicerone.Navigator;

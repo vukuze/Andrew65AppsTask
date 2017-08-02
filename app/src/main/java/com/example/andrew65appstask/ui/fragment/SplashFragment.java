@@ -1,6 +1,5 @@
 package com.example.andrew65appstask.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,18 +15,15 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.cicerone.Screens;
 import com.example.andrew65appstask.presentation.presenter.SplashPresenter;
 import com.example.andrew65appstask.presentation.view.SplashView;
 import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.activity.SpecialtyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.terrakok.cicerone.Navigator;
-import ru.terrakok.cicerone.android.SupportAppNavigator;
 
-public class SplashFragment extends BaseFragmentWithNavigator
+public class SplashFragment extends BaseFragment//BaseFragmentWithNavigator
         implements SplashView, BackButtonListener {
 
     private static final String TAG = "SplashFragment";
@@ -54,22 +50,10 @@ public class SplashFragment extends BaseFragmentWithNavigator
         return new SplashFragment();
     }
 
-    @Override
-    protected Navigator createNavigator() {
-        return new SupportAppNavigator(getActivity(), R.id.fragmentContainer) {
-            @Override
-            protected Intent createActivityIntent(String screenKey, Object data) {
-                if (screenKey.equals(Screens.SPECIALTY_ACTIVITY))
-                    return SpecialtyActivity.newIntent(getContext());
-                return null;
-            }
-
-            @Override
-            protected Fragment createFragment(String screenKey, Object data) {
-                return null;
-            }
-        };
-    }
+//    @Override
+//    protected Navigator createNavigator() {
+//        return null;
+//    }
 
     @Override
     public void inject() {

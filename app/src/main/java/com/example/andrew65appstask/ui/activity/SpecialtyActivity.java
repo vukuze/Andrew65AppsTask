@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.cicerone.Screens;
+import com.example.andrew65appstask.navigation.Screens;
 import com.example.andrew65appstask.ui.fragment.SpecialtyFragment;
 import com.example.andrew65appstask.ui.fragment.SplashFragment;
 

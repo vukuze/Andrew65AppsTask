@@ -21,14 +21,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements Injec
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inject();
-//        Icepick.restoreInstanceState(this, savedInstanceState);
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle bundle) {
-//        super.onSaveInstanceState(bundle);
-//        Icepick.saveInstanceState(this, bundle);
-//    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

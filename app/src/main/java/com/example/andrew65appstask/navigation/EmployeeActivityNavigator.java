@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.cicerone;
+package com.example.andrew65appstask.navigation;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;

@@ -1,7 +1,5 @@
 package com.example.andrew65appstask.db;
 
-import com.example.andrew65appstask.db.AbstractSpecialty;
-
 import java.sql.Date;
 import java.util.List;
 

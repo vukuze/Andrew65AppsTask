@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
 
+repositories {
+    jcenter()
+}
+
 android {
     def globalConfiguration = rootProject.ext
 
@@ -36,6 +40,20 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-//    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    compile dataDependencies.okHttpLogging
+
+    compile dataDependencies.dagger
+    annotationProcessor dataDependencies.daggerCompiler
+
+    compile dataDependencies.requery
+    compile dataDependencies.requeryAndroid
+    annotationProcessor dataDependencies.requeryProcessor
+
 //    testCompile 'junit:junit:4.12'
 }
