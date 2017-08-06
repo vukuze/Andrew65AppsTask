@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.dagger.Injector;
+import com.example.andrew65appstask.di.Injector;
 
 import javax.inject.Inject;
 

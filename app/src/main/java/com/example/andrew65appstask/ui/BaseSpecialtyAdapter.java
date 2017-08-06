@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.db.Specialty;
+import com.example.andrew65appstask.data.Specialty;
 
 import java.util.List;
 

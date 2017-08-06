@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
+import com.example.andrew65appstask.data.Specialty;
 import com.example.andrew65appstask.navigation.Screens;
 import com.example.andrew65appstask.presentation.presenter.SpecialtyPresenter;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
 import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
 import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
-import com.example.andrew65appstask.db.Specialty;
 import com.example.andrew65appstask.ui.BackButtonListener;
 import com.example.andrew65appstask.ui.activity.EmployeeActivity;
 

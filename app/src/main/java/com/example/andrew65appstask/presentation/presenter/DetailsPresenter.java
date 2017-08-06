@@ -5,7 +5,7 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.db.Employee;
+import com.example.andrew65appstask.data.Employee;
 import com.example.andrew65appstask.presentation.view.DetailsView;
 
 import javax.inject.Inject;

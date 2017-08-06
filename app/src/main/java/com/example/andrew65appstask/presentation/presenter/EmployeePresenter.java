@@ -5,10 +5,10 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.db.AbstractEmployee;
-import com.example.andrew65appstask.db.Employee;
+import com.example.andrew65appstask.data.AbstractEmployee;
+import com.example.andrew65appstask.data.Employee;
+import com.example.andrew65appstask.data.Specialty;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
-import com.example.andrew65appstask.db.Specialty;
 
 import java.util.ArrayList;
 import java.util.Collections;

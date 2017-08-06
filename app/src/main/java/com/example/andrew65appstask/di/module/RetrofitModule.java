@@ -1,8 +1,8 @@
-package com.example.andrew65appstask.dagger.module;
+package com.example.andrew65appstask.di.module;
 
-import com.example.andrew65appstask.network.FakeNetworkInterceptor;
-import com.example.andrew65appstask.network.SixtyFiveAppsRestService;
-import com.example.andrew65appstask.dagger.scope.SplashScope;
+import com.example.andrew65appstask.di.scope.AppScope;
+import com.example.andrew65appstask.data.network.FakeNetworkInterceptor;
+import com.example.andrew65appstask.data.network.SixtyFiveAppsRestService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,20 +17,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitModule {
 
     @Provides
-    @SplashScope
+    @AppScope
     FakeNetworkInterceptor provideFakeNetworkInterceptor() {
         return new FakeNetworkInterceptor();
     }
 
     @Provides
-    @SplashScope
+    @AppScope
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         return gsonBuilder.create();
     }
 
     @Provides
-    @SplashScope
+    @AppScope
     Retrofit provideRetrofit(OkHttpClient okHttpClient, Gson gson, FakeNetworkInterceptor fakeNetworkInterceptor) {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -41,7 +41,7 @@ public class RetrofitModule {
     }
 
     @Provides
-    @SplashScope
+    @AppScope
     SixtyFiveAppsRestService provideService(Retrofit retrofit) {
         return retrofit.create(SixtyFiveAppsRestService.class);
     }

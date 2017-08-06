@@ -1,10 +1,10 @@
-package com.example.andrew65appstask.dagger.module;
+package com.example.andrew65appstask.di.module;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.andrew65appstask.dagger.scope.AppScope;
+import com.example.andrew65appstask.di.scope.AppScope;
 
 import java.io.File;
 

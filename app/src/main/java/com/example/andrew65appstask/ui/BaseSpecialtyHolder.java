@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.db.Specialty;
+import com.example.andrew65appstask.data.Specialty;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,10 +15,9 @@ import butterknife.ButterKnife;
  */
 public class BaseSpecialtyHolder extends RecyclerView.ViewHolder {
 
+    protected Specialty specialty;
     @BindView(R.id.item_specialty_text_view)
     TextView nameTextView;
-
-    protected Specialty specialty;
 
     public BaseSpecialtyHolder(View itemView) {
         super(itemView);

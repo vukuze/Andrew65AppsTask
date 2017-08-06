@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.db.Specialty;
+import com.example.andrew65appstask.data.Specialty;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
 
 import java.util.List;

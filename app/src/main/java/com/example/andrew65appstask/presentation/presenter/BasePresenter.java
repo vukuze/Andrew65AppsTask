@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;
-import com.example.andrew65appstask.dagger.Injector;
+import com.example.andrew65appstask.di.Injector;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     @Inject
     ReactiveEntityStore<Persistable> db;
 
-    private Disposable disposable = null;
+    Disposable disposable = null;
 
     BasePresenter() {
         inject();

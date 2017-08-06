@@ -1,6 +1,6 @@
-package com.example.andrew65appstask.dagger;
+package com.example.andrew65appstask.di;
 
-import com.example.andrew65appstask.dagger.scope.DetailsScope;
+import com.example.andrew65appstask.di.scope.DetailsScope;
 import com.example.andrew65appstask.presentation.presenter.DetailsPresenter;
 import com.example.andrew65appstask.ui.activity.DetailsActivity;
 import com.example.andrew65appstask.ui.fragment.DetailsFragment;

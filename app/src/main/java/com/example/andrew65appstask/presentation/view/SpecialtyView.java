@@ -8,5 +8,5 @@ import java.util.List;
 
 @StateStrategyType(SingleStateStrategy.class)
 public interface SpecialtyView extends MvpView {
-    void updateItems(List<com.example.andrew65appstask.db.Specialty> specialties);
+    void updateItems(List<com.example.andrew65appstask.data.Specialty> specialties);
 }

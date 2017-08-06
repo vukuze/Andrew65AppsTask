@@ -6,5 +6,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(SingleStateStrategy.class)
 public interface DetailsView extends MvpView {
-    void updateItems(com.example.andrew65appstask.db.Employee employee);
+    void updateItems(com.example.andrew65appstask.data.Employee employee);
 }

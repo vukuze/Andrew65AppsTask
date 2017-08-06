@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
-import com.example.andrew65appstask.dagger.Injector;
+import com.example.andrew65appstask.di.Injector;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

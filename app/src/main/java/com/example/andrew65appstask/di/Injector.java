@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.dagger;
+package com.example.andrew65appstask.di;
 
 /**
  * Предназначен для инжекта зависимостей Dagger.

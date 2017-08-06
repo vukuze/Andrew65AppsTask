@@ -1,8 +1,8 @@
-package com.example.andrew65appstask.dagger.module;
+package com.example.andrew65appstask.di.module;
 
 import android.util.Log;
 
-import com.example.andrew65appstask.dagger.scope.AppScope;
+import com.example.andrew65appstask.di.scope.AppScope;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.network;
+package com.example.andrew65appstask.data.network;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

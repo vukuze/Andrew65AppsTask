@@ -2,10 +2,10 @@ package com.example.andrew65appstask.util;
 
 import android.util.Log;
 
-import com.example.andrew65appstask.db.Employee;
-import com.example.andrew65appstask.db.Specialty;
-import com.example.andrew65appstask.network.EmployeeRestAnswer;
-import com.example.andrew65appstask.network.SpecialtyRestAnswer;
+import com.example.andrew65appstask.data.Employee;
+import com.example.andrew65appstask.data.Specialty;
+import com.example.andrew65appstask.data.network.EmployeeRestAnswer;
+import com.example.andrew65appstask.data.network.SpecialtyRestAnswer;
 
 import java.sql.Date;
 import java.text.DateFormat;

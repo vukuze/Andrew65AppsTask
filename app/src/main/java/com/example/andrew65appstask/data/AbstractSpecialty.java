@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.db;
+package com.example.andrew65appstask.data;
 
 import java.util.List;
 
