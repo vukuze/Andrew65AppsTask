@@ -1,81 +1,36 @@
 package com.example.andrew65appstask.presentation.presenter;
 
-import android.util.Log;
-
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 import com.example.andrew65appstask.App;
-import com.example.andrew65appstask.data.AbstractEmployee;
-import com.example.andrew65appstask.data.Employee;
-import com.example.andrew65appstask.data.Specialty;
+import com.example.andrew65appstask.domain.GetEmployees;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import io.requery.Persistable;
-import io.requery.reactivex.ReactiveEntityStore;
-import ru.terrakok.cicerone.Router;
 
 @InjectViewState
-public class EmployeePresenter extends MvpPresenter<EmployeeView> {
-
-    private static final String TAG = "EmployeePresenter";
-
-    protected int specialtyId;
+public class EmployeePresenter extends BasePresenter<EmployeeView> {
 
     @Inject
-    Router router;
+    GetEmployees getEmployees;
 
-    @Inject
-    ReactiveEntityStore<Persistable> db;
-
-//    private Single<ArrayList<Employee>> chain;
-    private Disposable disposable = null;
-
-    public EmployeePresenter() {
-        Log.d(TAG, "constructor");
-
+    @Override
+    public void inject() {
         App.getEmployeeComponent().inject(this);
     }
 
     public void request(int specialtyId) {
-        this.specialtyId = specialtyId;
-
-        disposable = db.select(Specialty.class)
-                .where(Specialty.ID.eq(specialtyId))
-                .get()
-                .flowable()
+        setDisposable(getEmployees.executeUseCase(new GetEmployees.RequestValues(specialtyId))
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.computation())
-                .firstOrError()
-                .map(specialty -> {
-                    ArrayList<Employee> employees = new ArrayList<>();
-                    for (AbstractEmployee abstractEmployee : specialty.getEmployees()) {
-                        employees.add((Employee) abstractEmployee);
-                    }
-                    Collections.sort(employees, (o1, o2) -> o1.getLName().compareTo(o2.getLName()));
-                    return employees;
-                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(employees -> getViewState().updateItems(employees));
+                .subscribe(employees -> getViewState().updateItems(employees)));
     }
 
+    @Override
     public void onBackCommandClick() {
-        Log.d(TAG, "onBackCommandClick");
-        disposeChain();
+        super.onBackCommandClick();
         router.exit();
-    }
-
-    private void disposeChain() {
-        if (disposable != null && !disposable.isDisposed()) {
-            disposable.dispose();
-            Log.d(TAG, "disposeChain disposed");
-        }
     }
 }

@@ -21,9 +21,8 @@ import com.example.andrew65appstask.ui.BackButtonListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import ru.terrakok.cicerone.Navigator;
 
-public class SplashFragment extends BaseFragment//BaseFragmentWithNavigator
+public class SplashFragment extends BaseFragment
         implements SplashView, BackButtonListener {
 
     private static final String TAG = "SplashFragment";
@@ -50,14 +49,9 @@ public class SplashFragment extends BaseFragment//BaseFragmentWithNavigator
         return new SplashFragment();
     }
 
-//    @Override
-//    protected Navigator createNavigator() {
-//        return null;
-//    }
-
     @Override
     public void inject() {
-        App.getSplashComponent().inject(this);
+        App.getSpecialtyComponent().inject(this);
     }
 
     @Nullable
@@ -106,7 +100,6 @@ public class SplashFragment extends BaseFragment//BaseFragmentWithNavigator
 
     @Override
     public boolean onBackPressed() {
-        Log.d(TAG, "onBackPressed");
         splashPresenter.onBackCommandClick();
         return true;
     }

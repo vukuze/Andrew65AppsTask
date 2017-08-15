@@ -7,7 +7,6 @@ import com.example.andrew65appstask.di.DaggerAppComponent;
 import com.example.andrew65appstask.di.DetailsComponent;
 import com.example.andrew65appstask.di.EmployeeComponent;
 import com.example.andrew65appstask.di.SpecialtyComponent;
-import com.example.andrew65appstask.di.SplashComponent;
 import com.example.andrew65appstask.di.module.AppModule;
 import com.example.andrew65appstask.di.module.DatabaseModule;
 
@@ -15,7 +14,6 @@ public class App extends Application {
 
     private static App appInstance;
     private static AppComponent appComponent;
-    private static SplashComponent splashComponent;
     private static SpecialtyComponent specialtyComponent;
     private static EmployeeComponent employeeComponent;
     private static DetailsComponent detailsComponent;
@@ -27,12 +25,6 @@ public class App extends Application {
                     .databaseModule(new DatabaseModule(appInstance))
                     .build();
         return appComponent;
-    }
-
-    public static SplashComponent getSplashComponent() {
-        if (splashComponent == null)
-            splashComponent = getAppComponent().plusSplashComponent();
-        return splashComponent;
     }
 
     public static SpecialtyComponent getSpecialtyComponent() {

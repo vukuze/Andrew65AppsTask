@@ -1,7 +1,5 @@
 package com.example.andrew65appstask.ui.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -16,10 +14,6 @@ import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 import ru.terrakok.cicerone.commands.Replace;
 
 public class SpecialtyActivity extends BaseActivity {
-
-    public static Intent newIntent(Context context) {
-        return new Intent(context, SpecialtyActivity.class);
-    }
 
     @Override
     protected Navigator createNavigator() {

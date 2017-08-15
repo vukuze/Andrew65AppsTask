@@ -5,12 +5,15 @@ import android.util.Log;
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;
 import com.example.andrew65appstask.di.Injector;
+import com.example.andrew65appstask.domain.UseCase;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.requery.Persistable;
-import io.requery.reactivex.ReactiveEntityStore;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 import ru.terrakok.cicerone.Router;
 
 public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View>
@@ -19,13 +22,15 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     @Inject
     Router router;
 
-    @Inject
-    ReactiveEntityStore<Persistable> db;
-
-    Disposable disposable = null;
+    protected Disposable disposable = null;
 
     BasePresenter() {
         inject();
+    }
+
+    public void setDisposable(Disposable disposable) {
+        disposeChain();
+        this.disposable = disposable;
     }
 
     public void onBackCommandClick() {
@@ -33,7 +38,7 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
         disposeChain();
     }
 
-    protected void disposeChain() {
+    private void disposeChain() {
         if (disposable != null && !disposable.isDisposed()) {
             // TODO: непонятно как остановить выполнение цепочки
             disposable.dispose();

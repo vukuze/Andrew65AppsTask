@@ -12,24 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * UseCase
+ * UseCase: запрос к серверу, очистка БД и обновление данных в ней
  */
 
-public class UpdateData extends UseCase<Single<Iterable<Employee>>> {
+public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Employee>> {
 
     public UpdateData(Repository repository) {
         super(repository);
     }
 
     @Override
-    public Single<Iterable<Employee>> execute() {
+    public Single<Iterable<Employee>> executeUseCase(final RequestValues values) {
         return Single.just(Observable.empty())
                 // delay используется, чтобы успеть увидеть выполнение операций
                 .delay(1, TimeUnit.SECONDS)
@@ -76,5 +74,8 @@ public class UpdateData extends UseCase<Single<Iterable<Employee>>> {
                 .observeOn(Schedulers.io())
                 // запрос к серверу и получение REST ответа
                 .flatMap(employeeList -> repository.upsert(employeeList));
+    }
+
+    public static final class RequestValues implements UseCase.RequestValues {
     }
 }

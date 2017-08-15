@@ -19,19 +19,17 @@ public class SplashPresenter extends BasePresenter<SplashView> {
 
     @Override
     public void inject() {
-        App.getSplashComponent().inject(this);
+        App.getSpecialtyComponent().inject(this);
     }
 
     public void request() {
-        disposeChain();
-
-        disposable = networkData
-                .execute()
+        setDisposable(networkData
+                .executeUseCase(new UpdateData.RequestValues())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         employees -> router.replaceScreen(Screens.SPECIALTY_FRAGMENT),
-                        throwable -> getViewState().handleErrors(throwable));
+                        throwable -> getViewState().handleErrors(throwable)));
     }
 
     @Override
