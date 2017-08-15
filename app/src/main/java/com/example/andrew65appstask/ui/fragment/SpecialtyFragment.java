@@ -1,6 +1,5 @@
 package com.example.andrew65appstask.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,23 +14,18 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.data.Specialty;
-import com.example.andrew65appstask.navigation.Screens;
 import com.example.andrew65appstask.presentation.presenter.SpecialtyPresenter;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
+import com.example.andrew65appstask.ui.BackButtonListener;
 import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
 import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
-import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.activity.EmployeeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import ru.terrakok.cicerone.Navigator;
-import ru.terrakok.cicerone.android.SupportAppNavigator;
-import ru.terrakok.cicerone.commands.Forward;
 
-public class SpecialtyFragment extends BaseFragmentWithNavigator implements SpecialtyView, BackButtonListener {
+public class SpecialtyFragment extends BaseFragment implements SpecialtyView, BackButtonListener {
 
     public static final String TAG = "SpecialtyFragment";
 
@@ -43,23 +37,6 @@ public class SpecialtyFragment extends BaseFragmentWithNavigator implements Spec
 
     public static Fragment newInstance() {
         return new SpecialtyFragment();
-    }
-
-    @Override
-    protected Navigator createNavigator() {
-        return new SupportAppNavigator(getActivity(), R.id.fragmentContainer) {
-            @Override
-            protected Intent createActivityIntent(String screenKey, Object data) {
-                if (screenKey.equals(Screens.EMPLOYEE_ACTIVITY))
-                    return EmployeeActivity.newIntent(getContext(), (int) data);
-                return null;
-            }
-
-            @Override
-            protected Fragment createFragment(String screenKey, Object data) {
-                return null;
-            }
-        };
     }
 
     @Override
@@ -112,7 +89,7 @@ public class SpecialtyFragment extends BaseFragmentWithNavigator implements Spec
 
         @Override
         public void onClick(View v) {
-            navigator.applyCommand(new Forward(Screens.EMPLOYEE_ACTIVITY, specialty.getId()));
+            specialtyPresenter.onClick(specialty.getId());
         }
     }
 
