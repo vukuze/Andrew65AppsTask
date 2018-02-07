@@ -31,10 +31,4 @@ public class SplashPresenter extends BasePresenter<SplashView> {
                         employees -> router.replaceScreen(Screens.SPECIALTY_FRAGMENT),
                         throwable -> getViewState().handleErrors(throwable)));
     }
-
-    @Override
-    public void onBackCommandClick() {
-        super.onBackCommandClick();
-        router.exit();
-    }
 }

@@ -29,10 +29,4 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(employee -> getViewState().updateItems(employee)));
     }
-
-    @Override
-    public void onBackCommandClick() {
-        super.onBackCommandClick();
-        router.exit();
-    }
 }

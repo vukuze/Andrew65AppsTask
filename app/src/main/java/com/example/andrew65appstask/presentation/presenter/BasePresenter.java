@@ -5,15 +5,10 @@ import android.util.Log;
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;
 import com.example.andrew65appstask.di.Injector;
-import com.example.andrew65appstask.domain.UseCase;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
 import ru.terrakok.cicerone.Router;
 
 public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View>
@@ -22,13 +17,13 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     @Inject
     Router router;
 
-    protected Disposable disposable = null;
+    private Disposable disposable = null;
 
     BasePresenter() {
         inject();
     }
 
-    public void setDisposable(Disposable disposable) {
+    void setDisposable(Disposable disposable) {
         disposeChain();
         this.disposable = disposable;
     }
@@ -36,13 +31,14 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     public void onBackCommandClick() {
         Log.d(this.getClass().getSimpleName(), "onBackCommandClick");
         disposeChain();
+        router.exit();
     }
 
     private void disposeChain() {
         if (disposable != null && !disposable.isDisposed()) {
             // TODO: непонятно как остановить выполнение цепочки
             disposable.dispose();
-            Log.d(this.getClass().getSimpleName(), "disposeChain disposed");
+            Log.d(this.getClass().getSimpleName(), "disposeChain disposable.dispose()");
         }
     }
 }

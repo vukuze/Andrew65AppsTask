@@ -1,10 +1,10 @@
 package com.example.andrew65appstask.presentation.view;
 
 import com.arellomobile.mvp.MvpView;
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
-@StateStrategyType(AddToEndSingleStrategy.class)
+@StateStrategyType(SkipStrategy.class)
 public interface SplashView extends MvpView {
     void handleErrors(Throwable throwable);
 }

@@ -4,9 +4,7 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
-import java.util.List;
-
-@StateStrategyType(SkipStrategy.class)
-public interface SpecialtyView extends MvpView {
-    void updateItems(List<com.example.andrew65appstask.data.Specialty> specialties);
+//@StateStrategyType(SkipStrategy.class)
+public interface MainView extends MvpView {
+    void setFragment();
 }

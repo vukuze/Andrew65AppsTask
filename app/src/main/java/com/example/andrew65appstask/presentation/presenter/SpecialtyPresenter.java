@@ -31,12 +31,6 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
     }
 
     public void onClick(int specialtyId) {
-        router.navigateTo(Screens.EMPLOYEE_ACTIVITY, specialtyId);
-    }
-
-    @Override
-    public void onBackCommandClick() {
-        super.onBackCommandClick();
-        router.exit();
+        router.navigateTo(Screens.EMPLOYEE_FRAGMENT, specialtyId);
     }
 }

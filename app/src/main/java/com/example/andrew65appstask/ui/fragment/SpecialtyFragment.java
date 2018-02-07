@@ -95,7 +95,7 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView, Ba
 
     private class SpecialtyAdapter extends BaseSpecialtyAdapter<SpecialtyHolder> {
 
-        public SpecialtyAdapter(List<Specialty> specialties) {
+        SpecialtyAdapter(List<Specialty> specialties) {
             super(specialties);
         }
 

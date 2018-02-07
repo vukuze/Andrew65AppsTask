@@ -2,6 +2,7 @@ package com.example.andrew65appstask.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -20,6 +21,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements Injec
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(this.getClass().getSimpleName(), "onCreate");
         inject();
     }
 

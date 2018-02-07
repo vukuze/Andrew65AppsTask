@@ -16,22 +16,18 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.data.Employee;
-import com.example.andrew65appstask.navigation.Screens;
-import com.example.andrew65appstask.util.DateToStringFormatter;
 import com.example.andrew65appstask.presentation.presenter.EmployeePresenter;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
 import com.example.andrew65appstask.ui.BackButtonListener;
+import com.example.andrew65appstask.util.DateToStringFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ru.terrakok.cicerone.Navigator;
-import ru.terrakok.cicerone.commands.Back;
-import ru.terrakok.cicerone.commands.Forward;
 
-public class EmployeeFragment extends BaseFragmentWithNavigator implements EmployeeView, BackButtonListener {
+public class EmployeeFragment extends BaseFragment implements EmployeeView, BackButtonListener {
 
     private static final String TAG = "EmployeeFragment";
     private static final String ARG_SPECIALTY_ID = "specialty_id";
@@ -42,7 +38,7 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
     @BindView(R.id.fragment_employee_recycler_view)
     RecyclerView employeeRecyclerView;
 
-    private Callbacks callbacks;
+//    private Callbacks callbacks;
 
     public static Fragment newInstance(int specialtyId) {
         Bundle args = new Bundle();
@@ -53,30 +49,15 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
     }
 
     @Override
-    protected Navigator createNavigator() {
-        return command -> {
-            if (command instanceof Forward) {
-                Forward cmd = (Forward) command;
-                if (cmd.getScreenKey().equals(Screens.DETAILS_ACTIVITY)) {
-                    callbacks.onEmployeeSelected((int) cmd.getTransitionData());
-                }
-            } else if (command instanceof Back) {
-                Log.d(TAG, "Back");
-                getActivity().finish();
-            }
-        };
-    }
-
-    @Override
     public void inject() {
         App.getEmployeeComponent().inject(this);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        callbacks = (Callbacks) getActivity();
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        callbacks = (Callbacks) getActivity();
+//    }
 
     @Nullable
     @Override
@@ -100,11 +81,25 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
         employeePresenter.request(specialtyId);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        callbacks = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        callbacks = null;
+//    }
+
+//    @Override
+//    public void onResume() {
+//        Log.d(this.getClass().getSimpleName(), "onResume");
+//        super.onResume();
+//        navigatorHolder.setNavigator(navigator);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        Log.d(this.getClass().getSimpleName(), "onPause");
+//        navigatorHolder.removeNavigator();
+//        super.onPause();
+//    }
 
     /**
      * Обновляет данные списка сотрудников, полученные из презентера
@@ -123,12 +118,12 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
         return true;
     }
 
-    /**
-     * Интерфейс для передачи данных активности-хосту
-     */
-    public interface Callbacks {
-        void onEmployeeSelected(int employeeId);
-    }
+//    /**
+//     * Интерфейс для передачи данных активности-хосту
+//     */
+//    public interface Callbacks {
+//        void onEmployeeSelected(int employeeId);
+//    }
 
     class EmployeeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -158,7 +153,8 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
 
         @Override
         public void onClick(View v) {
-            navigator.applyCommand(new Forward(Screens.DETAILS_ACTIVITY, employee.getId()));
+//            navigator.applyCommand(new Forward(Screens.DETAILS_ACTIVITY, employee.getId()));
+            //navigator.applyCommand(new Forward(Screens.DETAILS_FRAGMENT, employee.getId()));
         }
     }
 
@@ -188,4 +184,21 @@ public class EmployeeFragment extends BaseFragmentWithNavigator implements Emplo
             return employees.size();
         }
     }
+
+    //    @Override
+//    protected Navigator createNavigator() {
+//        return command -> {
+//            if (command instanceof Forward) {
+//                Forward cmd = (Forward) command;
+////                if (cmd.getScreenKey().equals(Screens.DETAILS_ACTIVITY)) {
+//                if (cmd.getScreenKey().equals(Screens.DETAILS_FRAGMENT)) {
+//                    callbacks.onEmployeeSelected((int) cmd.getTransitionData());
+//                }
+//            }
+////            else if (command instanceof Back) {
+////                Log.d(TAG, "Back");
+////                getActivity().finish();
+////            }
+//        };
+//    }
 }

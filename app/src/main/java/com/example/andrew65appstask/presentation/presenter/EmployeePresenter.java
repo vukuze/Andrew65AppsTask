@@ -27,10 +27,4 @@ public class EmployeePresenter extends BasePresenter<EmployeeView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(employees -> getViewState().updateItems(employees)));
     }
-
-    @Override
-    public void onBackCommandClick() {
-        super.onBackCommandClick();
-        router.exit();
-    }
 }
