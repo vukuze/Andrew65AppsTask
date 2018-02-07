@@ -67,7 +67,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
             super.onBackPressed();
         }
     }
- 
+
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
