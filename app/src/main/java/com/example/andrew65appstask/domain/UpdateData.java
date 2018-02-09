@@ -28,6 +28,7 @@ public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Emplo
 
     @Override
     public Single<Iterable<Employee>> executeUseCase(final RequestValues values) {
+        Log.d(this.getClass().getSimpleName(), "executeUseCase");
         return Single.just(Observable.empty())
                 // delay используется, чтобы успеть увидеть выполнение операций
                 .delay(1, TimeUnit.SECONDS)
@@ -58,6 +59,7 @@ public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Emplo
 
     // запрос к серверу и получение REST ответа
     private Single<Response> getNetworkData() {
+        Log.d(this.getClass().getSimpleName(), "flatMap -> getNetworkData");
         return Single.just(Observable.empty())
                 .observeOn(Schedulers.io())
                 .flatMap(unused -> repository.getFile());
@@ -65,11 +67,13 @@ public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Emplo
 
     // Удалить все данные из БД
     private void emptyDb() {
+        Log.d(this.getClass().getSimpleName(), "emptyDb");
         repository.emptyDB();
     }
 
     // Обновляет данные в SQLite из REST ответа
     private Single<Iterable<Employee>> upsertDb(List<Employee> employees) {
+        Log.d(this.getClass().getSimpleName(), "flatMap -> upsertDb");
         return Single.just(employees)
                 .observeOn(Schedulers.io())
                 // запрос к серверу и получение REST ответа

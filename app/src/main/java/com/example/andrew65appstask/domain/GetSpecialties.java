@@ -1,5 +1,7 @@
 package com.example.andrew65appstask.domain;
 
+import android.util.Log;
+
 import com.example.andrew65appstask.data.Repository;
 import com.example.andrew65appstask.data.Specialty;
 
@@ -21,6 +23,7 @@ public class GetSpecialties extends UseCase<GetSpecialties.RequestValues, List<S
 
     @Override
     public Single<List<Specialty>> executeUseCase(final RequestValues values) {
+        Log.d(this.getClass().getSimpleName(), "executeUseCase");
         return Single.just(Observable.empty())
                 .observeOn(Schedulers.computation())
                 .flatMap(emptyObservable -> repository.getSpecialties());

@@ -1,7 +1,7 @@
 package com.example.andrew65appstask.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,12 +61,10 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
 
-        View view = inflater.inflate(R.layout.fragment_employee, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_employee, container, false);
     }
 
     @Override
@@ -77,7 +75,11 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
         employeeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         employeeRecyclerView.setAdapter(new EmployeeAdapter(new ArrayList<>()));
 
-        int specialtyId = getArguments().getInt(ARG_SPECIALTY_ID);
+        final Bundle arguments = getArguments();
+
+        int specialtyId = 0;
+        if (arguments != null)
+            specialtyId = arguments.getInt(ARG_SPECIALTY_ID);
         employeePresenter.request(specialtyId);
     }
 
@@ -162,7 +164,7 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
 
         private List<Employee> employees;
 
-        public EmployeeAdapter(List<Employee> employees) {
+        EmployeeAdapter(List<Employee> employees) {
             this.employees = employees;
         }
 

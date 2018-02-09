@@ -23,6 +23,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     }
 
     public void request() {
+        setRequestNeeded(false);
         setDisposable(networkData
                 .executeUseCase(new UpdateData.RequestValues())
                 .subscribeOn(Schedulers.io())

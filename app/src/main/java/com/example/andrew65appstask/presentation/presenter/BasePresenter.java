@@ -19,8 +19,18 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
 
     private Disposable disposable = null;
 
+    private boolean requestNeeded = true;
+
     BasePresenter() {
         inject();
+    }
+
+    public boolean isRequestNeeded() {
+        return requestNeeded;
+    }
+
+    public void setRequestNeeded(boolean requestNeeded) {
+        this.requestNeeded = requestNeeded;
     }
 
     void setDisposable(Disposable disposable) {

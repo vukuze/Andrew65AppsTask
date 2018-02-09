@@ -73,10 +73,6 @@ dependencies {
     compile "io.requery:requery-android:$requeryVersion"
     annotationProcessor "io.requery:requery-processor:$requeryVersion"
 
-    def icepickVersion = '3.2.0'
-    compile "frankiesardo:icepick:$icepickVersion"
-    annotationProcessor "frankiesardo:icepick-processor:$icepickVersion"
-
     def moxyVersion = '1.5.2'
     compile "com.arello-mobile:moxy:$moxyVersion"
     compile "com.arello-mobile:moxy-android:$moxyVersion"

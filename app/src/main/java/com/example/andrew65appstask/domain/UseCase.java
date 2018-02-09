@@ -1,5 +1,7 @@
 package com.example.andrew65appstask.domain;
 
+import android.util.Log;
+
 import com.example.andrew65appstask.data.Repository;
 
 import io.reactivex.Single;
@@ -12,6 +14,7 @@ public abstract class UseCase<Param extends UseCase.RequestValues, Result> {
 
     UseCase(Repository repository) {
         this.repository = repository;
+        Log.d(this.getClass().getSimpleName(), "constructor");
     }
 
     public Param getRequestValues() {
@@ -29,7 +32,7 @@ public abstract class UseCase<Param extends UseCase.RequestValues, Result> {
     /**
      * Входные данные для UseCase
      */
-    public interface RequestValues {
+    interface RequestValues {
     }
 }
 

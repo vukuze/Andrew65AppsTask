@@ -1,5 +1,7 @@
 package com.example.andrew65appstask.domain;
 
+import android.util.Log;
+
 import com.example.andrew65appstask.data.Employee;
 import com.example.andrew65appstask.data.Repository;
 
@@ -21,6 +23,7 @@ public class GetEmployees extends UseCase<GetEmployees.RequestValues, List<Emplo
 
     @Override
     public Single<List<Employee>> executeUseCase(final RequestValues values) {
+        Log.d(this.getClass().getSimpleName(), "executeUseCase");
         int specialtyId = values.getSpecialtyId();
         return Single.just(Observable.empty())
                 .observeOn(Schedulers.computation())
@@ -34,7 +37,7 @@ public class GetEmployees extends UseCase<GetEmployees.RequestValues, List<Emplo
             this.specialtyId = specialtyId;
         }
 
-        public int getSpecialtyId() {
+        int getSpecialtyId() {
             return specialtyId;
         }
     }

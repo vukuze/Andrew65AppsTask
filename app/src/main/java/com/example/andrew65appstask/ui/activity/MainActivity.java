@@ -13,9 +13,6 @@ import com.example.andrew65appstask.navigation.MainActivityNavigator;
 import com.example.andrew65appstask.navigation.Screens;
 import com.example.andrew65appstask.presentation.presenter.MainPresenter;
 import com.example.andrew65appstask.presentation.view.MainView;
-import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.fragment.SpecialtyFragment;
-import com.example.andrew65appstask.ui.fragment.SplashFragment;
 
 import javax.inject.Inject;
 
@@ -56,19 +53,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     }
 
     @Override
-    public void onBackPressed() {
-        Log.d(TAG, "onBackPressed");
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
-        if (fragment != null &&
-                fragment instanceof BackButtonListener &&
-                ((BackButtonListener) fragment).onBackPressed()) {
-            return;
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
         navigatorHolder.setNavigator(navigator);
@@ -84,16 +68,29 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
         fragmentAttached = true;
-        Log.d(TAG, "onAttachFragment, SplashFragment? " + (fragment instanceof SplashFragment) + ", SpecialtyFragment? " + (fragment instanceof SpecialtyFragment));
+        Log.d(TAG, "onAttachFragment, type = " + fragment.getClass().getSimpleName());
     }
 
     @Override
     public void setFragment() {
-        Log.d(TAG, "setFragment");
-
-        if (!fragmentAttached)
+        if (!fragmentAttached) {
+            Log.d(TAG, "setFragment");
             navigator.applyCommand(new Replace(Screens.SPLASH_FRAGMENT, null));
+        }
     }
+
+    //    @Override
+//    public void onBackPressed() {
+//        Log.d(TAG, "onBackPressed");
+//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
+//        if (fragment != null &&
+//                fragment instanceof BackButtonListener &&
+//                ((BackButtonListener) fragment).onBackPressed()) {
+////            return;
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
 //    @Override
 //    public void onEmployeeSelected(int employeeId) {

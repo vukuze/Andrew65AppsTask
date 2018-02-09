@@ -80,7 +80,8 @@ public class SplashFragment extends BaseFragment
 
         setViewVisibility(true);
 
-        splashPresenter.request();
+        if (splashPresenter.isRequestNeeded())
+            splashPresenter.request();
     }
 
     private void setViewVisibility(boolean isVisible) {
@@ -97,6 +98,7 @@ public class SplashFragment extends BaseFragment
         Log.d(TAG, "handleErrors: " + throwable.getMessage());
 
         setViewVisibility(false);
+        splashPresenter.setRequestNeeded(true);
     }
 
     @Override

@@ -23,6 +23,7 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
     }
 
     public void request() {
+        setRequestNeeded(false);
         setDisposable(getSpecialties
                 .executeUseCase(new GetSpecialties.RequestValues())
                 .subscribeOn(Schedulers.io())

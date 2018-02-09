@@ -1,6 +1,7 @@
 package com.example.andrew65appstask.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView, Ba
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
 
         return inflater.inflate(R.layout.fragment_specialty, container, false);
@@ -60,7 +61,8 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView, Ba
         specialtiesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(new ArrayList<>()));
 
-        specialtyPresenter.request();
+        if (specialtyPresenter.isRequestNeeded())
+            specialtyPresenter.request();
     }
 
     /*
