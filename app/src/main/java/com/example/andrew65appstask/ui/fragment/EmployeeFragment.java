@@ -19,6 +19,7 @@ import com.example.andrew65appstask.data.Employee;
 import com.example.andrew65appstask.presentation.presenter.EmployeePresenter;
 import com.example.andrew65appstask.presentation.view.EmployeeView;
 import com.example.andrew65appstask.ui.BackButtonListener;
+import com.example.andrew65appstask.ui.adapter.employee.EmployeeAdapter;
 import com.example.andrew65appstask.util.DateToStringFormatter;
 
 import java.util.ArrayList;
@@ -38,8 +39,6 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
     @BindView(R.id.fragment_employee_recycler_view)
     RecyclerView employeeRecyclerView;
 
-//    private Callbacks callbacks;
-
     public static Fragment newInstance(int specialtyId) {
         Bundle args = new Bundle();
         args.putInt(ARG_SPECIALTY_ID, specialtyId);
@@ -52,12 +51,6 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
     public void inject() {
         App.getEmployeeComponent().inject(this);
     }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        callbacks = (Callbacks) getActivity();
-//    }
 
     @Nullable
     @Override
@@ -80,28 +73,10 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
         int specialtyId = 0;
         if (arguments != null)
             specialtyId = arguments.getInt(ARG_SPECIALTY_ID);
-        employeePresenter.request(specialtyId);
+
+        if (employeePresenter.isRequestNeeded())
+            employeePresenter.request(specialtyId);
     }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        callbacks = null;
-//    }
-
-//    @Override
-//    public void onResume() {
-//        Log.d(this.getClass().getSimpleName(), "onResume");
-//        super.onResume();
-//        navigatorHolder.setNavigator(navigator);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        Log.d(this.getClass().getSimpleName(), "onPause");
-//        navigatorHolder.removeNavigator();
-//        super.onPause();
-//    }
 
     /**
      * Обновляет данные списка сотрудников, полученные из презентера
@@ -114,78 +89,69 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView, Back
     }
 
     @Override
-    public boolean onBackPressed() {
-        Log.d(TAG, "onBackPressed");
+    public void onBackPressed() {
         employeePresenter.onBackCommandClick();
-        return true;
     }
 
-//    /**
-//     * Интерфейс для передачи данных активности-хосту
-//     */
-//    public interface Callbacks {
-//        void onEmployeeSelected(int employeeId);
+//    class EmployeeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+//
+//        @BindView(R.id.item_employee_lname_text_view)
+//        TextView lNameTextView;
+//
+//        @BindView(R.id.item_employee_fname_text_view)
+//        TextView fNameTextView;
+//
+//        @BindView(R.id.item_employee_age_text_view)
+//        TextView ageTextView;
+//
+//        private Employee employee;
+//
+//        EmployeeHolder(View itemView) {
+//            super(itemView);
+//            ButterKnife.bind(this, itemView);
+//            itemView.setOnClickListener(this);
+//        }
+//
+//        void bindEmployee(Employee employee) {
+//            this.employee = employee;
+//            lNameTextView.setText(this.employee.getLName());
+//            fNameTextView.setText(this.employee.getFName());
+//            ageTextView.setText(DateToStringFormatter.getAge(this.employee.getBirthday()));
+//        }
+//
+//        @Override
+//        public void onClick(View v) {
+////            navigator.applyCommand(new Forward(Screens.DETAILS_ACTIVITY, employee.getId()));
+//            //navigator.applyCommand(new Forward(Screens.DETAILS_FRAGMENT, employee.getId()));
+//        }
 //    }
 
-    class EmployeeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        @BindView(R.id.item_employee_lname_text_view)
-        TextView lNameTextView;
-
-        @BindView(R.id.item_employee_fname_text_view)
-        TextView fNameTextView;
-
-        @BindView(R.id.item_employee_age_text_view)
-        TextView ageTextView;
-
-        private Employee employee;
-
-        EmployeeHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-        }
-
-        void bindEmployee(Employee employee) {
-            this.employee = employee;
-            lNameTextView.setText(this.employee.getLName());
-            fNameTextView.setText(this.employee.getFName());
-            ageTextView.setText(DateToStringFormatter.getAge(this.employee.getBirthday()));
-        }
-
-        @Override
-        public void onClick(View v) {
-//            navigator.applyCommand(new Forward(Screens.DETAILS_ACTIVITY, employee.getId()));
-            //navigator.applyCommand(new Forward(Screens.DETAILS_FRAGMENT, employee.getId()));
-        }
-    }
-
-    private class EmployeeAdapter extends RecyclerView.Adapter<EmployeeHolder> {
-
-        private List<Employee> employees;
-
-        EmployeeAdapter(List<Employee> employees) {
-            this.employees = employees;
-        }
-
-        @Override
-        public EmployeeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            View view = inflater.inflate(R.layout.list_item_employee, parent, false);
-            return new EmployeeHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(EmployeeHolder holder, int position) {
-            Employee employee = employees.get(position);
-            holder.bindEmployee(employee);
-        }
-
-        @Override
-        public int getItemCount() {
-            return employees.size();
-        }
-    }
+//    private class EmployeeAdapter extends RecyclerView.Adapter<EmployeeHolder> {
+//
+//        private List<Employee> employees;
+//
+//        EmployeeAdapter(List<Employee> employees) {
+//            this.employees = employees;
+//        }
+//
+//        @Override
+//        public EmployeeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//            LayoutInflater inflater = LayoutInflater.from(getActivity());
+//            View view = inflater.inflate(R.layout.list_item_employee, parent, false);
+//            return new EmployeeHolder(view);
+//        }
+//
+//        @Override
+//        public void onBindViewHolder(EmployeeHolder holder, int position) {
+//            Employee employee = employees.get(position);
+//            holder.bindEmployee(employee);
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return employees.size();
+//        }
+//    }
 
     //    @Override
 //    protected Navigator createNavigator() {

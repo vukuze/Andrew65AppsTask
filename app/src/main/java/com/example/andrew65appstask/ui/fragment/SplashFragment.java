@@ -23,8 +23,7 @@ import com.example.andrew65appstask.ui.BackButtonListener;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SplashFragment extends BaseFragment
-        implements SplashView, BackButtonListener {
+public class SplashFragment extends BaseFragment implements SplashView, BackButtonListener {
 
     private static final String TAG = "SplashFragment";
     private static final String LOADING_NOW = "Загрузка данных с сервера ...";
@@ -76,12 +75,12 @@ public class SplashFragment extends BaseFragment
 
     @OnClick(R.id.splash_button)
     public void startRequest() {
-        Log.d(TAG, "startRequest");
-
         setViewVisibility(true);
 
-        if (splashPresenter.isRequestNeeded())
+        if (splashPresenter.isRequestNeeded()) {
+            Log.d(TAG, "startRequest requestNeeded");
             splashPresenter.request();
+        }
     }
 
     private void setViewVisibility(boolean isVisible) {
@@ -102,8 +101,7 @@ public class SplashFragment extends BaseFragment
     }
 
     @Override
-    public boolean onBackPressed() {
+    public void onBackPressed() {
         splashPresenter.onBackCommandClick();
-        return true;
     }
 }

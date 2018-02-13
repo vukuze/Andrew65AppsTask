@@ -22,6 +22,8 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     private boolean requestNeeded = true;
 
     BasePresenter() {
+        super();
+
         inject();
     }
 
@@ -41,10 +43,9 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     public void onBackCommandClick() {
         Log.d(this.getClass().getSimpleName(), "onBackCommandClick");
         disposeChain();
-        router.exit();
     }
 
-    private void disposeChain() {
+    public void disposeChain() {
         if (disposable != null && !disposable.isDisposed()) {
             // TODO: непонятно как остановить выполнение цепочки
             disposable.dispose();

@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.ui;
+package com.example.andrew65appstask.ui.adapter.specialty;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

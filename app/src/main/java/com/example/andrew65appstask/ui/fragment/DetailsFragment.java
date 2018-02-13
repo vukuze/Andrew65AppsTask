@@ -21,8 +21,8 @@ import com.example.andrew65appstask.data.Specialty;
 import com.example.andrew65appstask.presentation.presenter.DetailsPresenter;
 import com.example.andrew65appstask.presentation.view.DetailsView;
 import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
-import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
+import com.example.andrew65appstask.ui.adapter.specialty.BaseSpecialtyAdapter;
+import com.example.andrew65appstask.ui.adapter.specialty.BaseSpecialtyHolder;
 import com.example.andrew65appstask.ui.view.DoubleTextView;
 import com.example.andrew65appstask.util.DateToStringFormatter;
 import com.example.andrew65appstask.util.GlideLoggingListener;
@@ -124,15 +124,13 @@ public class DetailsFragment extends BaseFragmentWithNavigator implements Detail
     }
 
     @Override
-    public boolean onBackPressed() {
-        Log.d(TAG, "onBackPressed");
-        detailsPresenter.onBackCommandClick();
-        return true;
+    public void onBackPressed() {
+        detailsPresenter.disposeChain();
     }
 
     private class SpecialtyAdapter extends BaseSpecialtyAdapter<BaseSpecialtyHolder> {
 
-        public SpecialtyAdapter(List<Specialty> specialties) {
+        SpecialtyAdapter(List<Specialty> specialties) {
             super(specialties);
         }
 

@@ -1,5 +1,5 @@
 package com.example.andrew65appstask.ui;
 
 public interface BackButtonListener {
-    boolean onBackPressed();
+    void onBackPressed();
 }

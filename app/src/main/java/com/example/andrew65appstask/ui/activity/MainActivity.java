@@ -2,7 +2,6 @@ package com.example.andrew65appstask.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -18,6 +17,7 @@ import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.commands.Back;
 import ru.terrakok.cicerone.commands.Replace;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView {
@@ -32,8 +32,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @Inject
     NavigatorHolder navigatorHolder;
-
-    private boolean fragmentAttached = false;
 
     @LayoutRes
     protected int getLayoutResId() {
@@ -65,41 +63,14 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     }
 
     @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-        fragmentAttached = true;
-        Log.d(TAG, "onAttachFragment, type = " + fragment.getClass().getSimpleName());
+    public void showSplashFragment() {
+        Log.d(TAG, "showSplashFragment");
+        navigator.applyCommand(new Replace(Screens.SPLASH_FRAGMENT, null));
     }
 
     @Override
-    public void setFragment() {
-        if (!fragmentAttached) {
-            Log.d(TAG, "setFragment");
-            navigator.applyCommand(new Replace(Screens.SPLASH_FRAGMENT, null));
-        }
+    public void onBackPressed() {
+        Log.d(TAG, "onBackPressed");
+        navigator.applyCommand(new Back());
     }
-
-    //    @Override
-//    public void onBackPressed() {
-//        Log.d(TAG, "onBackPressed");
-//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
-//        if (fragment != null &&
-//                fragment instanceof BackButtonListener &&
-//                ((BackButtonListener) fragment).onBackPressed()) {
-////            return;
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
-//    @Override
-//    public void onEmployeeSelected(int employeeId) {
-////        boolean isLandscape = findViewById(R.id.detail_fragment_container) != null;
-////
-////        if (isLandscape) {
-////            navigator.applyCommand(new Replace(Screens.DETAILS_FRAGMENT, employeeId));
-////        } else {
-////            navigator.applyCommand(new Forward(Screens.DETAILS_FRAGMENT, employeeId));
-////        }
-//    }
 }

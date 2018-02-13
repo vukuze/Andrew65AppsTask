@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.ui;
+package com.example.andrew65appstask.ui.adapter.specialty;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 public class BaseSpecialtyHolder extends RecyclerView.ViewHolder {
 
     protected Specialty specialty;
+
     @BindView(R.id.item_specialty_text_view)
     TextView nameTextView;
 

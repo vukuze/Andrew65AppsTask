@@ -21,7 +21,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements Injec
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(this.getClass().getSimpleName(), "onCreate");
+        Log.d(this.getClass().getSimpleName(), "BaseFragment.onCreate");
         inject();
     }
 
@@ -34,6 +34,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment implements Injec
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.d(this.getClass().getSimpleName(), "BaseFragment.onDestroyView");
         unbinder.unbind();
     }
 }

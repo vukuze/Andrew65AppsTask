@@ -18,8 +18,7 @@ import com.example.andrew65appstask.data.Specialty;
 import com.example.andrew65appstask.presentation.presenter.SpecialtyPresenter;
 import com.example.andrew65appstask.presentation.view.SpecialtyView;
 import com.example.andrew65appstask.ui.BackButtonListener;
-import com.example.andrew65appstask.ui.BaseSpecialtyAdapter;
-import com.example.andrew65appstask.ui.BaseSpecialtyHolder;
+import com.example.andrew65appstask.ui.adapter.specialty.SpecialtyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +64,9 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView, Ba
             specialtyPresenter.request();
     }
 
-    /*
-    * Обновляет данные списка специальностей, полученные из презентера
-    */
+    /**
+     * Обновляет данные списка специальностей, полученные из презентера
+     */
     @Override
     public void updateItems(List<Specialty> specialties) {
         Log.d(TAG, "updateItems");
@@ -76,34 +75,7 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView, Ba
     }
 
     @Override
-    public boolean onBackPressed() {
-        Log.d(TAG, "onBackPressed");
+    public void onBackPressed() {
         specialtyPresenter.onBackCommandClick();
-        return true;
-    }
-
-    private class SpecialtyHolder extends BaseSpecialtyHolder implements View.OnClickListener {
-
-        SpecialtyHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            specialtyPresenter.onClick(specialty.getId());
-        }
-    }
-
-    private class SpecialtyAdapter extends BaseSpecialtyAdapter<SpecialtyHolder> {
-
-        SpecialtyAdapter(List<Specialty> specialties) {
-            super(specialties);
-        }
-
-        @Override
-        public SpecialtyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new SpecialtyHolder(inflate(parent, viewType));
-        }
     }
 }
