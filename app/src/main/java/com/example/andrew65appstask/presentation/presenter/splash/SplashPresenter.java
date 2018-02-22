@@ -27,7 +27,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
 
     @Override
     public void inject() {
-        App.getSpecialtyComponent().inject(this);
+        App.getSplashComponent().inject(this);
     }
 
     public void request() {
@@ -36,7 +36,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        employees -> router.replaceScreen(Screens.SPECIALTY_FRAGMENT),
+                        employees -> router.newRootScreen(Screens.SPECIALTY_ACTIVITY),
                         throwable -> getViewState().handleErrors(throwable)));
     }
 }

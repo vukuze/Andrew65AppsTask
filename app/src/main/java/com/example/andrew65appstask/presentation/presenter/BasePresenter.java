@@ -11,7 +11,8 @@ import javax.inject.Inject;
 import io.reactivex.disposables.Disposable;
 import ru.terrakok.cicerone.Router;
 
-public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View>
+public abstract class BasePresenter<View extends MvpView>
+        extends MvpPresenter<View>
         implements Injector {
 
     @Inject

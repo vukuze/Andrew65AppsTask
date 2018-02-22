@@ -1,11 +1,11 @@
-package com.example.andrew65appstask.presentation.presenter.main;
+package com.example.andrew65appstask.presentation.presenter.specialty;
 
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.navigation.Screens;
 import com.example.andrew65appstask.presentation.presenter.BasePresenter;
-import com.example.andrew65appstask.presentation.view.main.MainView;
+import com.example.andrew65appstask.presentation.view.specialty.SpecialtyActivityView;
 
-public class MainPresenter extends BasePresenter<MainView> {
+public class SpecialtyActivityPresenter extends BasePresenter<SpecialtyActivityView> {
 
     @Override
     public void inject() {
@@ -16,6 +16,6 @@ public class MainPresenter extends BasePresenter<MainView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
 
-        router.replaceScreen(Screens.SPLASH_FRAGMENT, null);
+        router.replaceScreen(Screens.SPECIALTY_FRAGMENT, null);
     }
 }

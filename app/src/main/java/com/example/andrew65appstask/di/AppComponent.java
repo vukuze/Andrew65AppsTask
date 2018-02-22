@@ -14,6 +14,8 @@ import dagger.Component;
 @AppScope
 @Component(modules = {AppModule.class, OkHttpClientModule.class, DatabaseModule.class, NavigationModule.class, RetrofitModule.class, RepositoryModule.class, UseCaseModule.class})
 public interface AppComponent {
+    SplashComponent plusSplashComponent();
+
     SpecialtyComponent plusSpecialtyComponent();
 
     EmployeeComponent plusEmployeeComponent();

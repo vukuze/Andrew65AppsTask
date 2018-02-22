@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.main.MainActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:label="@string/activity_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.specialty.SpecialtyActivity" />
         <activity android:name=".ui.activity.employee.EmployeeActivity" />
     </application>
 

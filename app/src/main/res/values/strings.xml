@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Andrew65AppsTask</string>
     <string name="activity_name">Учет сотрудников</string>
+    <string name="fragment_splash_name">Обновление данных</string>
     <string name="fragment_specialty_name">Специальности</string>
     <string name="fragment_employee_name">Сотрудники</string>
     <string name="fragment_details_name">О сотруднике</string>

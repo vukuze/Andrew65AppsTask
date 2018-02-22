@@ -51,12 +51,12 @@ public class SplashFragment extends BaseFragment implements SplashView {
 
     @Override
     public void inject() {
-        App.getSpecialtyComponent().inject(this);
+        App.getSplashComponent().inject(this);
     }
 
     @Override
     public int setActionBarTitle() {
-        return R.string.activity_name;
+        return R.string.fragment_splash_name;
     }
 
     @Nullable
