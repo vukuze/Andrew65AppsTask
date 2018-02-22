@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.data.Specialty;
+import com.example.andrew65appstask.ui.view.specialty.BaseSpecialtyHolder;
 
 import java.util.List;
 

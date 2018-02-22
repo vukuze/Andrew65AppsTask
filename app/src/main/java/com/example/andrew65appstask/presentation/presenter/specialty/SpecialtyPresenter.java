@@ -1,10 +1,11 @@
-package com.example.andrew65appstask.presentation.presenter;
+package com.example.andrew65appstask.presentation.presenter.specialty;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.domain.GetSpecialties;
 import com.example.andrew65appstask.navigation.Screens;
-import com.example.andrew65appstask.presentation.view.SpecialtyView;
+import com.example.andrew65appstask.presentation.presenter.BasePresenter;
+import com.example.andrew65appstask.presentation.view.specialty.SpecialtyView;
 
 import javax.inject.Inject;
 
@@ -22,8 +23,11 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
         App.getSpecialtyComponent().inject(this);
     }
 
-    public void request() {
-        setRequestNeeded(false);
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+
+        // TODO: 16.02.2018 в случае ошибки тут что-то не должно работать
         setDisposable(getSpecialties
                 .executeUseCase(new GetSpecialties.RequestValues())
                 .subscribeOn(Schedulers.io())
@@ -32,6 +36,6 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
     }
 
     public void onClick(int specialtyId) {
-        router.navigateTo(Screens.EMPLOYEE_FRAGMENT, specialtyId);
+        router.navigateTo(Screens.EMPLOYEE_ACTIVITY, specialtyId);
     }
 }

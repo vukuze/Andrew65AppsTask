@@ -1,12 +1,12 @@
 package com.example.andrew65appstask.di;
 
 import com.example.andrew65appstask.di.scope.SpecialtyScope;
-import com.example.andrew65appstask.presentation.presenter.MainPresenter;
-import com.example.andrew65appstask.presentation.presenter.SpecialtyPresenter;
-import com.example.andrew65appstask.presentation.presenter.SplashPresenter;
-import com.example.andrew65appstask.ui.activity.MainActivity;
-import com.example.andrew65appstask.ui.fragment.SpecialtyFragment;
-import com.example.andrew65appstask.ui.fragment.SplashFragment;
+import com.example.andrew65appstask.presentation.presenter.main.MainPresenter;
+import com.example.andrew65appstask.presentation.presenter.specialty.SpecialtyPresenter;
+import com.example.andrew65appstask.presentation.presenter.splash.SplashPresenter;
+import com.example.andrew65appstask.ui.activity.main.MainActivity;
+import com.example.andrew65appstask.ui.fragment.specialty.SpecialtyFragment;
+import com.example.andrew65appstask.ui.fragment.splash.SplashFragment;
 
 import dagger.Subcomponent;
 

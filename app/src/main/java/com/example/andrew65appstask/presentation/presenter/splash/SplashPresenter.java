@@ -1,10 +1,11 @@
-package com.example.andrew65appstask.presentation.presenter;
+package com.example.andrew65appstask.presentation.presenter.splash;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.domain.UpdateData;
 import com.example.andrew65appstask.navigation.Screens;
-import com.example.andrew65appstask.presentation.view.SplashView;
+import com.example.andrew65appstask.presentation.presenter.BasePresenter;
+import com.example.andrew65appstask.presentation.view.splash.SplashView;
 
 import javax.inject.Inject;
 
@@ -18,12 +19,18 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     UpdateData networkData;
 
     @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+
+        request();
+    }
+
+    @Override
     public void inject() {
         App.getSpecialtyComponent().inject(this);
     }
 
     public void request() {
-        setRequestNeeded(false);
         setDisposable(networkData
                 .executeUseCase(new UpdateData.RequestValues())
                 .subscribeOn(Schedulers.io())

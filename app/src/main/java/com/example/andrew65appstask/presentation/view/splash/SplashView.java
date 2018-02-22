@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.presentation.view;
+package com.example.andrew65appstask.presentation.view.splash;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;

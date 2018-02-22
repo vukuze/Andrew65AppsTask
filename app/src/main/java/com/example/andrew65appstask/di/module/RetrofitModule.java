@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetrofitModule {
-
+    // TODO: 15.02.2018 Проверить Scope
     @Provides
     @AppScope
     FakeNetworkInterceptor provideFakeNetworkInterceptor() {

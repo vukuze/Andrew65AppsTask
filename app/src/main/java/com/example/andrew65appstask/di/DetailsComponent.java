@@ -1,8 +1,8 @@
 package com.example.andrew65appstask.di;
 
 import com.example.andrew65appstask.di.scope.DetailsScope;
-import com.example.andrew65appstask.presentation.presenter.DetailsPresenter;
-import com.example.andrew65appstask.ui.fragment.DetailsFragment;
+import com.example.andrew65appstask.presentation.presenter.employee.DetailsPresenter;
+import com.example.andrew65appstask.ui.fragment.employee.DetailsFragment;
 
 import dagger.Subcomponent;
 

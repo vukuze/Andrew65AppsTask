@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.ui.view;
+package com.example.andrew65appstask.ui.view.employee;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +16,6 @@ import com.example.andrew65appstask.R;
 
 public class DoubleTextView extends LinearLayout {
 
-    private TextView headerView;
     private TextView textView;
 
     public DoubleTextView(Context context, AttributeSet attrs) {
@@ -36,8 +35,8 @@ public class DoubleTextView extends LinearLayout {
             String text = a.getString(R.styleable.DoubleTextView_text);
             text = text == null ? "" : text;
 
-            headerView = (TextView) layout.findViewById(R.id.double_text_header_view);
-            textView = (TextView) layout.findViewById(R.id.double_text_text_view);
+            TextView headerView = layout.findViewById(R.id.double_text_header_view);
+            textView = layout.findViewById(R.id.double_text_text_view);
 
             headerView.setText(header);
             textView.setText(text);

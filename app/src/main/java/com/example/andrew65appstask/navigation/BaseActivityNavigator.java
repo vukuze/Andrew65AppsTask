@@ -1,0 +1,56 @@
+package com.example.andrew65appstask.navigation;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.example.andrew65appstask.R;
+import com.example.andrew65appstask.ui.fragment.BackButtonListener;
+
+import ru.terrakok.cicerone.android.SupportAppNavigator;
+import ru.terrakok.cicerone.commands.Back;
+import ru.terrakok.cicerone.commands.Command;
+
+public abstract class BaseActivityNavigator extends SupportAppNavigator {
+
+    protected MvpAppCompatActivity activity;
+    private FragmentManager fragmentManager;
+
+    BaseActivityNavigator(MvpAppCompatActivity activity, FragmentManager fragmentManager, int containerId) {
+        super(activity, fragmentManager, containerId);
+        this.activity = activity;
+        this.fragmentManager = fragmentManager;
+    }
+
+    @Override
+    protected void showSystemMessage(String message) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void exit() {
+        Log.d(this.getClass().getSimpleName(), "exit");
+        activity.finish();
+    }
+
+    @Override
+    public void applyCommand(Command command) {
+        Log.d(this.getClass().getSimpleName(), "applyCommand " + command.getClass().getSimpleName());
+
+        if (command instanceof Back) {
+            onBackPressed(R.id.fragmentContainer);
+            onBackPressed(R.id.detail_fragment_container);
+        }
+        super.applyCommand(command);
+    }
+
+    private void onBackPressed(int id) {
+        Fragment fragment = fragmentManager.findFragmentById(id);
+        if (fragment != null && fragment instanceof BackButtonListener) {
+            Log.d(this.getClass().getSimpleName(), "Back - " + fragment.getClass().getSimpleName());
+            ((BackButtonListener) fragment).onBackPressed();
+        }
+    }
+}

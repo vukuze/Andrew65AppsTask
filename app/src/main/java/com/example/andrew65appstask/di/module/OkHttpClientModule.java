@@ -18,7 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class OkHttpClientModule {
 
     private final String TAG = "OkHttpClientModule";
-
+    // TODO: 15.02.2018 Проверить Scope
     @Provides
     @AppScope
     HttpLoggingInterceptor provideHttpLoggingInterceptor() {

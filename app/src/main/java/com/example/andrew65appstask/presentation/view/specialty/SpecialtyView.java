@@ -1,8 +1,7 @@
-package com.example.andrew65appstask.presentation.view;
+package com.example.andrew65appstask.presentation.view.specialty;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
-import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import java.util.List;

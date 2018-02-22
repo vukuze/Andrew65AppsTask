@@ -31,6 +31,7 @@ public class GetEmployees extends UseCase<GetEmployees.RequestValues, List<Emplo
     }
 
     public static final class RequestValues implements UseCase.RequestValues {
+
         private final int specialtyId;
 
         public RequestValues(int specialtyId) {

@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,7 +69,7 @@ public class JsonToEntityConverter {
             return null;
 
         Date date = null;
-        DateFormat format = new SimpleDateFormat("yyyyMMdd");
+        DateFormat format = new SimpleDateFormat("yyyyMMdd", Locale.US);
         Matcher m1 = p1.matcher(stringDate);
         if (m1.matches() && m1.groupCount() == 3) {
             String result = m1.group(1) + m1.group(2) + m1.group(3);
@@ -89,7 +90,7 @@ public class JsonToEntityConverter {
             }
             return date;
         }
-        return date;
+        return null;
     }
 
     /**

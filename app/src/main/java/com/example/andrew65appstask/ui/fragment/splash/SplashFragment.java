@@ -1,4 +1,4 @@
-package com.example.andrew65appstask.ui.fragment;
+package com.example.andrew65appstask.ui.fragment.splash;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,14 +16,14 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.andrew65appstask.App;
 import com.example.andrew65appstask.R;
-import com.example.andrew65appstask.presentation.presenter.SplashPresenter;
-import com.example.andrew65appstask.presentation.view.SplashView;
-import com.example.andrew65appstask.ui.BackButtonListener;
+import com.example.andrew65appstask.presentation.presenter.splash.SplashPresenter;
+import com.example.andrew65appstask.presentation.view.splash.SplashView;
+import com.example.andrew65appstask.ui.fragment.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SplashFragment extends BaseFragment implements SplashView, BackButtonListener {
+public class SplashFragment extends BaseFragment implements SplashView {
 
     private static final String TAG = "SplashFragment";
     private static final String LOADING_NOW = "Загрузка данных с сервера ...";
@@ -54,6 +54,11 @@ public class SplashFragment extends BaseFragment implements SplashView, BackButt
         App.getSpecialtyComponent().inject(this);
     }
 
+    @Override
+    public int setActionBarTitle() {
+        return R.string.activity_name;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
@@ -64,23 +69,20 @@ public class SplashFragment extends BaseFragment implements SplashView, BackButt
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated");
 
         super.onViewCreated(view, savedInstanceState);
         button.setText(LOADING_ERROR_BTN_TEXT);
 
-        startRequest();
+        setViewVisibility(true);
     }
 
     @OnClick(R.id.splash_button)
     public void startRequest() {
         setViewVisibility(true);
 
-        if (splashPresenter.isRequestNeeded()) {
-            Log.d(TAG, "startRequest requestNeeded");
-            splashPresenter.request();
-        }
+        splashPresenter.request();
     }
 
     private void setViewVisibility(boolean isVisible) {
@@ -90,14 +92,13 @@ public class SplashFragment extends BaseFragment implements SplashView, BackButt
         button.setVisibility(isVisible ? View.GONE : View.VISIBLE);
     }
 
-    /*
-    * Действия, выполняемые в случае возникновения ошибок сетевых запросов и запросов к БД
-    */
+    /**
+     * Действия, выполняемые в случае возникновения ошибок сетевых запросов и запросов к БД
+     */
     public void handleErrors(Throwable throwable) {
         Log.d(TAG, "handleErrors: " + throwable.getMessage());
 
         setViewVisibility(false);
-        splashPresenter.setRequestNeeded(true);
     }
 
     @Override

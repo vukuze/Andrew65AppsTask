@@ -5,6 +5,8 @@ public class Screens {
 
     public static final String SPECIALTY_FRAGMENT = "specialty_fragment";
 
+    public static final String EMPLOYEE_ACTIVITY = "employee_activity";
+
     public static final String EMPLOYEE_FRAGMENT = "employee_fragment";
 
     public static final String DETAILS_FRAGMENT = "details_fragment";

@@ -1,6 +1,7 @@
-package com.example.andrew65appstask.ui.fragment;
+package com.example.andrew65appstask.ui.fragment.employee;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,12 +19,12 @@ import com.example.andrew65appstask.R;
 import com.example.andrew65appstask.data.AbstractSpecialty;
 import com.example.andrew65appstask.data.Employee;
 import com.example.andrew65appstask.data.Specialty;
-import com.example.andrew65appstask.presentation.presenter.DetailsPresenter;
-import com.example.andrew65appstask.presentation.view.DetailsView;
-import com.example.andrew65appstask.ui.BackButtonListener;
+import com.example.andrew65appstask.presentation.presenter.employee.DetailsPresenter;
+import com.example.andrew65appstask.presentation.view.employee.DetailsView;
 import com.example.andrew65appstask.ui.adapter.specialty.BaseSpecialtyAdapter;
-import com.example.andrew65appstask.ui.adapter.specialty.BaseSpecialtyHolder;
-import com.example.andrew65appstask.ui.view.DoubleTextView;
+import com.example.andrew65appstask.ui.fragment.BaseFragment;
+import com.example.andrew65appstask.ui.view.employee.DoubleTextView;
+import com.example.andrew65appstask.ui.view.specialty.BaseSpecialtyHolder;
 import com.example.andrew65appstask.util.DateToStringFormatter;
 import com.example.andrew65appstask.util.GlideLoggingListener;
 
@@ -31,9 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import ru.terrakok.cicerone.Navigator;
 
-public class DetailsFragment extends BaseFragmentWithNavigator implements DetailsView, BackButtonListener {
+public class DetailsFragment extends BaseFragment implements DetailsView {
 
     private static final String TAG = "DetailsFragment";
     private static final String ARG_EMPLOYEE_ID = "employee_id";
@@ -54,7 +54,7 @@ public class DetailsFragment extends BaseFragmentWithNavigator implements Detail
     DoubleTextView ageView;
 
     @BindView(R.id.employee_avatr)
-    ImageView avatrImageView;
+    ImageView avatarImageView;
 
     @BindView(R.id.fragment_specialty_recycler_view)
     RecyclerView specialtiesRecyclerView;
@@ -68,33 +68,38 @@ public class DetailsFragment extends BaseFragmentWithNavigator implements Detail
     }
 
     @Override
-    protected Navigator createNavigator() {
-        return command -> {
-        };
-    }
-
-    @Override
     public void inject() {
         App.getDetailsComponent().inject(this);
     }
 
+    @Override
+    public int setActionBarTitle() {
+        return R.string.fragment_details_name;
+    }
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         return inflater.inflate(R.layout.fragment_employee_details, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(new ArrayList<>()));
         specialtiesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        int employeeId = getArguments().getInt(ARG_EMPLOYEE_ID);
-        detailsPresenter.request(employeeId);
+        final Bundle arguments = getArguments();
+
+        int employeeId = 0;
+        if (arguments != null) {
+            employeeId = arguments.getInt(ARG_EMPLOYEE_ID);
+        }
+
+        detailsPresenter.setEmployeeId(employeeId);
     }
 
     /**
@@ -114,18 +119,17 @@ public class DetailsFragment extends BaseFragmentWithNavigator implements Detail
         }
         specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(items));
 
-        // TODO: 05.05.2017 replace Glide in presenter (возможно реализовать через 2 команды - стратегии View)
         Glide.with(this)
                 .load(employee.getAvatrUrl())
                 .listener(new GlideLoggingListener<>())
                 .placeholder(R.drawable.ic_loading_image)
                 .error(R.drawable.ic_cancel_loading)
-                .into(avatrImageView);
+                .into(avatarImageView);
     }
 
     @Override
     public void onBackPressed() {
-        detailsPresenter.disposeChain();
+        detailsPresenter.onBackCommandClick();
     }
 
     private class SpecialtyAdapter extends BaseSpecialtyAdapter<BaseSpecialtyHolder> {

@@ -15,27 +15,23 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
         implements Injector {
 
     @Inject
-    Router router;
+    public Router router;
 
     private Disposable disposable = null;
 
-    private boolean requestNeeded = true;
-
-    BasePresenter() {
+    public BasePresenter() {
         super();
 
         inject();
     }
 
-    public boolean isRequestNeeded() {
-        return requestNeeded;
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        Log.d(this.getClass().getSimpleName(), "onFirstViewAttach");
     }
 
-    public void setRequestNeeded(boolean requestNeeded) {
-        this.requestNeeded = requestNeeded;
-    }
-
-    void setDisposable(Disposable disposable) {
+    protected void setDisposable(Disposable disposable) {
         disposeChain();
         this.disposable = disposable;
     }
@@ -45,7 +41,7 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
         disposeChain();
     }
 
-    public void disposeChain() {
+    private void disposeChain() {
         if (disposable != null && !disposable.isDisposed()) {
             // TODO: непонятно как остановить выполнение цепочки
             disposable.dispose();

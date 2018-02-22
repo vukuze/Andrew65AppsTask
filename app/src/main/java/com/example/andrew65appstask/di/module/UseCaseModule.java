@@ -14,7 +14,7 @@ import dagger.Provides;
 
 @Module
 public class UseCaseModule {
-
+    // TODO: 15.02.2018 Проверить Scope
     @Provides
     @AppScope
     UpdateData provideNetworkData(@NonNull Repository repository) {
