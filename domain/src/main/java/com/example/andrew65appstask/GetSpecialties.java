@@ -1,4 +1,4 @@
-package com.example.andrew65appstask;
+package com.andrew.personnel;
 
 //import com.example.andrew65appstask.db.Specialty;
 

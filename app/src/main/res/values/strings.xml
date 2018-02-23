@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Andrew65AppsTask</string>
+    <string name="app_name">PersonnelTask</string>
     <string name="activity_name">Учет сотрудников</string>
     <string name="fragment_splash_name">Обновление данных</string>
     <string name="fragment_specialty_name">Специальности</string>

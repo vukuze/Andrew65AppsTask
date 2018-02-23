@@ -19,25 +19,25 @@
         android:scaleType="centerInside"
         tools:ignore="ContentDescription"/>
 
-    <com.example.andrew65appstask.ui.view.employee.DoubleTextView
+    <com.andrew.personnel.ui.view.employee.DoubleTextView
         android:id="@+id/employee_fname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:header="@string/employee_fname"/>
 
-    <com.example.andrew65appstask.ui.view.employee.DoubleTextView
+    <com.andrew.personnel.ui.view.employee.DoubleTextView
         android:id="@+id/employee_lname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:header="@string/employee_lname"/>
 
-    <com.example.andrew65appstask.ui.view.employee.DoubleTextView
+    <com.andrew.personnel.ui.view.employee.DoubleTextView
         android:id="@+id/employee_birthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:header="@string/employee_birthday"/>
 
-    <com.example.andrew65appstask.ui.view.employee.DoubleTextView
+    <com.andrew.personnel.ui.view.employee.DoubleTextView
         android:id="@+id/employee_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
