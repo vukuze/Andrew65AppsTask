@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.andrew.personnel">
+    package="me.andrew.taskpersonnel">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.andrew.personnel.App"
+        android:name="me.andrew.taskpersonnel.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.andrew.personnel.ui.activity.splash.SplashActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:label="@string/activity_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.andrew.personnel.ui.activity.specialty.SpecialtyActivity" />
-        <activity android:name="com.andrew.personnel.ui.activity.employee.EmployeeActivity" />
+        <activity android:name=".ui.activity.specialty.SpecialtyActivity" />
+        <activity android:name=".ui.activity.employee.EmployeeActivity" />
     </application>
 
 </manifest>

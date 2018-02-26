@@ -8,7 +8,6 @@ buildscript {
 }
 
 repositories {
-//    mavenCentral()
     maven { url "https://clojars.org/repo/" }
 }
 
@@ -18,7 +17,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId 'com.andrew.personnel'
+        applicationId 'com.andrew.taskpersonnel'
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
