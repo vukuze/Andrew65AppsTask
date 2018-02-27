@@ -63,42 +63,27 @@ public class SplashFragment extends BaseFragment implements SplashView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
             container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
-
         return inflater.inflate(R.layout.fragment_splash, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated");
-
         super.onViewCreated(view, savedInstanceState);
         button.setText(LOADING_ERROR_BTN_TEXT);
-
-        setViewVisibility(true);
     }
 
     @OnClick(R.id.splash_button)
     public void startRequest() {
-        setViewVisibility(true);
-
         splashPresenter.request();
     }
 
-    private void setViewVisibility(boolean isVisible) {
+    public void setViewVisibility(boolean isVisible) {
+        Log.d(TAG, "setViewVisibility: " + isVisible);
+
         progressBar.setVisibility(isVisible ? View.VISIBLE : View.GONE);
         imageView.setVisibility(isVisible ? View.GONE : View.VISIBLE);
         textView.setText(isVisible ? LOADING_NOW : LOADING_ERROR_FINISH);
         button.setVisibility(isVisible ? View.GONE : View.VISIBLE);
-    }
-
-    /**
-     * Действия, выполняемые в случае возникновения ошибок сетевых запросов и запросов к БД
-     */
-    public void handleErrors(Throwable throwable) {
-        Log.d(TAG, "handleErrors: " + throwable.getMessage());
-
-        setViewVisibility(false);
     }
 
     @Override

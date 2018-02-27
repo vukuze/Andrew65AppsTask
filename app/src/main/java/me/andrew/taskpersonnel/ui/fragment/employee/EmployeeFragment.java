@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +30,14 @@ import me.andrew.taskpersonnel.presentation.view.employee.EmployeeView;
 import me.andrew.taskpersonnel.ui.fragment.BaseFragment;
 import me.andrew.taskpersonnel.util.DateToStringFormatter;
 
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+import static me.andrew.taskpersonnel.ui.fragment.specialty.SpecialtyFragment.SPECIALTY_NOT_DEFINED;
+
 public class EmployeeFragment extends BaseFragment implements EmployeeView {
 
     private static final String TAG = "EmployeeFragment";
-    private static final String ARG_EMPLOYEE_REQUEST_DATA = "employee_request_data";
-    public static int SPECIALTY_NOT_DEFINED = -1;
+    private static final String ARG_SPECIALTY_ID = "specialty_ID";
+
     public static int EMPLOYEE_NOT_DEFINED = -1;
 
     @InjectPresenter
@@ -43,12 +46,21 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
     @BindView(R.id.fragment_employee_recycler_view)
     RecyclerView employeeRecyclerView;
 
-    public static Fragment newInstance(RequestData employeeRequestData) {
+    public static Fragment newInstance(int specialtyId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_EMPLOYEE_REQUEST_DATA, employeeRequestData);
+        args.putSerializable(ARG_SPECIALTY_ID, specialtyId);
         EmployeeFragment fragment = new EmployeeFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @ProvidePresenter
+    EmployeePresenter provideEmployeePresenter() {
+        final Bundle arguments = getArguments();
+        int specialtyId = SPECIALTY_NOT_DEFINED;
+        if (arguments != null)
+            specialtyId = arguments.getInt(ARG_SPECIALTY_ID);
+        return new EmployeePresenter(specialtyId);
     }
 
     @Override
@@ -64,26 +76,15 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
-
         return inflater.inflate(R.layout.fragment_employee, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         employeeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         employeeRecyclerView.setAdapter(new EmployeeAdapter(new ArrayList<>()));
-
-        final Bundle arguments = getArguments();
-
-        RequestData employeeRequestData = null;
-        if (arguments != null)
-            employeeRequestData = (RequestData) arguments.getSerializable(ARG_EMPLOYEE_REQUEST_DATA);
-        if (employeeRequestData != null)
-            employeePresenter.setSpecialtyId(employeeRequestData.getSpecialtyId());
     }
 
     /**
@@ -95,7 +96,8 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
 
         // TODO: 16.02.2018 не создавать каждый раз адаптер
         employeeRecyclerView.setAdapter(new EmployeeAdapter(employees));
-        employeePresenter.navigateToDetails();
+        if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE)
+            employeePresenter.showDetailsFragment();
     }
 
     @Override
@@ -106,31 +108,7 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
     private void setCardViewBackgroundColor(CardView view, int color) {
         Activity activity = getActivity();
         if (activity != null) {
-            boolean isLandscape = activity.findViewById(R.id.detail_fragment_container) != null;
-            if (isLandscape) {
-                view.setCardBackgroundColor(getResources().getColor(color));
-            }
-        }
-    }
-
-    public static class RequestData implements Serializable {
-        private int specialtyId = SPECIALTY_NOT_DEFINED;
-        private int employeeId = EMPLOYEE_NOT_DEFINED;
-
-        int getSpecialtyId() {
-            return specialtyId;
-        }
-
-        public void setSpecialtyId(int specialtyId) {
-            this.specialtyId = specialtyId;
-        }
-
-        public int getEmployeeId() {
-            return employeeId;
-        }
-
-        public void setEmployeeId(int employeeId) {
-            this.employeeId = employeeId;
+            view.setCardBackgroundColor(getResources().getColor(color));
         }
     }
 

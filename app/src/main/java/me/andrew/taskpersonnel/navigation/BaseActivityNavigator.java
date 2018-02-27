@@ -53,12 +53,13 @@ public abstract class BaseActivityNavigator extends SupportAppNavigator {
 
         if (command instanceof Back) {
             onBackPressed(R.id.fragmentContainer);
-            onBackPressed(R.id.detail_fragment_container);
+            // TODO: 26.02.2018 удалить отсюда detail
+            //onBackPressed(R.id.detail_fragment_container);
         }
         super.applyCommand(command);
     }
 
-    private void onBackPressed(int id) {
+    protected void onBackPressed(int id) {
         Fragment fragment = fragmentManager.findFragmentById(id);
         if (fragment != null && fragment instanceof BackButtonListener) {
             Log.d(this.getClass().getSimpleName(), "Back - " + fragment.getClass().getSimpleName());

@@ -80,13 +80,11 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         return inflater.inflate(R.layout.fragment_employee_details, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(new ArrayList<>()));

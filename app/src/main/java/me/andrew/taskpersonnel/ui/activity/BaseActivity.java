@@ -38,6 +38,12 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements Injec
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(this.getClass().getSimpleName(), "onDestroy");
+    }
+
+    @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
         navigatorHolder.setNavigator(navigator);

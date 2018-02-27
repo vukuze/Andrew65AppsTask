@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import me.andrew.taskpersonnel.App;
 import me.andrew.taskpersonnel.R;
 import me.andrew.taskpersonnel.data.Specialty;
@@ -21,14 +26,10 @@ import me.andrew.taskpersonnel.ui.adapter.specialty.BaseSpecialtyAdapter;
 import me.andrew.taskpersonnel.ui.fragment.BaseFragment;
 import me.andrew.taskpersonnel.ui.view.specialty.BaseSpecialtyHolder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-
 public class SpecialtyFragment extends BaseFragment implements SpecialtyView {
 
     public static final String TAG = "SpecialtyFragment";
+    public static int SPECIALTY_NOT_DEFINED = -1;
 
     @InjectPresenter
     SpecialtyPresenter specialtyPresenter;
@@ -53,13 +54,11 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         return inflater.inflate(R.layout.fragment_specialty, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         specialtiesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -84,7 +83,6 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView {
     /**
      * SpecialtyAdapter с реализацией View.OnClickListener в SpecialtyHolder
      */
-
     private class SpecialtyAdapter extends BaseSpecialtyAdapter<SpecialtyHolder> {
 
         SpecialtyAdapter(List<Specialty> specialties) {
@@ -100,7 +98,6 @@ public class SpecialtyFragment extends BaseFragment implements SpecialtyView {
     /**
      * SpecialtyHolder, в котором implements View.OnClickListener
      */
-
     private class SpecialtyHolder extends BaseSpecialtyHolder implements View.OnClickListener {
 
         SpecialtyHolder(View itemView) {

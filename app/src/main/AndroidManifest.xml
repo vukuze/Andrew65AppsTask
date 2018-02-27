@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".ui.activity.specialty.SpecialtyActivity" />
         <activity android:name=".ui.activity.employee.EmployeeActivity" />
+        <activity android:name=".ui.activity.employee.DetailsActivity" />
     </application>
 
 </manifest>

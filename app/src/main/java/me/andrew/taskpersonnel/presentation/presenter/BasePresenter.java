@@ -4,11 +4,11 @@ import android.util.Log;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;
-import me.andrew.taskpersonnel.di.Injector;
 
 import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
+import me.andrew.taskpersonnel.di.Injector;
 import ru.terrakok.cicerone.Router;
 
 public abstract class BasePresenter<View extends MvpView>
@@ -22,6 +22,8 @@ public abstract class BasePresenter<View extends MvpView>
 
     public BasePresenter() {
         super();
+
+        Log.d(this.getClass().getSimpleName(), "constructor");
 
         inject();
     }

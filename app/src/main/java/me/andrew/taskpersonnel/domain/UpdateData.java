@@ -10,6 +10,7 @@ import me.andrew.taskpersonnel.util.JsonToEntityConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -30,17 +31,17 @@ public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Emplo
         Log.d(this.getClass().getSimpleName(), "executeUseCase");
         return Single.just(Observable.empty())
                 // delay используется, чтобы успеть увидеть выполнение операций
-//                .delay(1, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.SECONDS)
                 .flatMap(emptyObservable -> getNetworkData())
-//                .delay(1, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.SECONDS)
                 .map(response -> {
                     emptyDb();
                     return response;
                 })
-//                .delay(1, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.SECONDS)
                 .observeOn(Schedulers.computation())
                 .map(this::convertRestToDb)
-//                .delay(1, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.SECONDS)
                 .flatMap(this::upsertDb)
                 .cache();
     }

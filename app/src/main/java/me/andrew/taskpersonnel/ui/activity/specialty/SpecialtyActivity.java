@@ -8,10 +8,12 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import me.andrew.taskpersonnel.App;
 import me.andrew.taskpersonnel.R;
+import me.andrew.taskpersonnel.navigation.Screens;
 import me.andrew.taskpersonnel.navigation.SpecialtyActivityNavigator;
 import me.andrew.taskpersonnel.presentation.presenter.specialty.SpecialtyActivityPresenter;
 import me.andrew.taskpersonnel.presentation.view.specialty.SpecialtyActivityView;
 import me.andrew.taskpersonnel.ui.activity.BaseActivity;
+import ru.terrakok.cicerone.commands.Replace;
 
 public class SpecialtyActivity extends BaseActivity implements SpecialtyActivityView {
 

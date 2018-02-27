@@ -38,9 +38,4 @@ public class SplashActivityNavigator extends BaseActivityNavigator {
                 return null;
         }
     }
-
-    @Override
-    protected void exit() {
-        super.exit();
-    }
 }

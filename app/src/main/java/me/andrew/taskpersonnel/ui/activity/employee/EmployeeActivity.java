@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import me.andrew.taskpersonnel.App;
 import me.andrew.taskpersonnel.R;
@@ -14,11 +15,10 @@ import me.andrew.taskpersonnel.presentation.presenter.employee.EmployeeActivityP
 import me.andrew.taskpersonnel.presentation.view.employee.EmployeeActivityView;
 import me.andrew.taskpersonnel.ui.activity.BaseActivity;
 
-import static me.andrew.taskpersonnel.ui.fragment.employee.EmployeeFragment.SPECIALTY_NOT_DEFINED;
+import static me.andrew.taskpersonnel.ui.fragment.specialty.SpecialtyFragment.SPECIALTY_NOT_DEFINED;
 
 public class EmployeeActivity extends BaseActivity implements EmployeeActivityView {
 
-    //    private static final String TAG = "EmployeeActivity";
     private static final String EXTRA_SPECIALTY_ID = "specialty_id";
 
     @InjectPresenter
@@ -30,8 +30,10 @@ public class EmployeeActivity extends BaseActivity implements EmployeeActivityVi
         return intent;
     }
 
-    public void setEmployeeId(int employeeId) {
-        employeeActivityPresenter.setEmployeeId(employeeId);
+    @ProvidePresenter
+    EmployeeActivityPresenter provideEmployeeActivityPresenter() {
+        int specialtyId = getIntent().getIntExtra(EXTRA_SPECIALTY_ID, SPECIALTY_NOT_DEFINED);
+        return new EmployeeActivityPresenter(specialtyId);
     }
 
     @LayoutRes
@@ -48,13 +50,6 @@ public class EmployeeActivity extends BaseActivity implements EmployeeActivityVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        boolean isLandscape = findViewById(R.id.detail_fragment_container) != null;
-        this.navigator = new EmployeeActivityNavigator(this, getSupportFragmentManager(), isLandscape);
-
-        employeeActivityPresenter.handleFragmentRestore(getSupportFragmentManager(), isLandscape);
-
-        int specialtyId = getIntent().getIntExtra(EXTRA_SPECIALTY_ID, SPECIALTY_NOT_DEFINED);
-        employeeActivityPresenter.setSpecialtyId(specialtyId);
+        this.navigator = new EmployeeActivityNavigator(this, getSupportFragmentManager());
     }
 }
