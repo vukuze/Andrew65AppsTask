@@ -3,9 +3,6 @@ package me.andrew.taskpersonnel.di.module;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import me.andrew.taskpersonnel.di.scope.AppScope;
-import me.andrew.taskpersonnel.data.Models;
-
 import dagger.Module;
 import dagger.Provides;
 import io.requery.Persistable;
@@ -14,8 +11,10 @@ import io.requery.reactivex.ReactiveEntityStore;
 import io.requery.reactivex.ReactiveSupport;
 import io.requery.sql.Configuration;
 import io.requery.sql.EntityDataStore;
+import me.andrew.taskpersonnel.data.Models;
+import me.andrew.taskpersonnel.di.scope.AppScope;
 
-@Module(includes = AppModule.class)
+@Module
 public class DatabaseModule {
 
     private ReactiveEntityStore<Persistable> db = null;

@@ -33,12 +33,6 @@ public abstract class BaseActivityNavigator extends SupportAppNavigator {
     }
 
     @Override
-    protected void exit() {
-        Log.d(this.getClass().getSimpleName(), "exit");
-        activity.finish();
-    }
-
-    @Override
     public void applyCommand(Command command) {
         String screenKey = null;
         if (command instanceof Forward) {
@@ -53,13 +47,11 @@ public abstract class BaseActivityNavigator extends SupportAppNavigator {
 
         if (command instanceof Back) {
             onBackPressed(R.id.fragmentContainer);
-            // TODO: 26.02.2018 удалить отсюда detail
-            //onBackPressed(R.id.detail_fragment_container);
         }
         super.applyCommand(command);
     }
 
-    protected void onBackPressed(int id) {
+    void onBackPressed(int id) {
         Fragment fragment = fragmentManager.findFragmentById(id);
         if (fragment != null && fragment instanceof BackButtonListener) {
             Log.d(this.getClass().getSimpleName(), "Back - " + fragment.getClass().getSimpleName());

@@ -13,7 +13,6 @@ import me.andrew.taskpersonnel.ui.activity.BaseActivity;
 
 public class SplashActivity extends BaseActivity implements SplashActivityView {
 
-    @SuppressWarnings("unused")
     @InjectPresenter
     SplashActivityPresenter splashActivityPresenter;
 

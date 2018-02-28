@@ -10,6 +10,7 @@ import me.andrew.taskpersonnel.R;
 import me.andrew.taskpersonnel.ui.activity.employee.DetailsActivity;
 import me.andrew.taskpersonnel.ui.fragment.employee.DetailsFragment;
 import me.andrew.taskpersonnel.ui.fragment.employee.EmployeeFragment;
+import ru.terrakok.cicerone.commands.Back;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
@@ -75,6 +76,8 @@ public class EmployeeActivityNavigator extends BaseActivityNavigator {
                     command = new Forward(Screens.DETAILS_ACTIVITY, employeeId);
                 }
             }
+        } else if (command instanceof Back) {
+            onBackPressed(R.id.detail_fragment_container);
         }
         super.applyCommand(command);
     }
