@@ -6,5 +6,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 public interface SplashView extends MvpView {
     @StateStrategyType(SingleStateStrategy.class)
-    void setViewVisibility(boolean isVisible);
+    void setIsViewLoading(boolean isVisible);
 }

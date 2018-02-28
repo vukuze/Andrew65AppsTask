@@ -77,8 +77,8 @@ public class SplashFragment extends BaseFragment implements SplashView {
         splashPresenter.request();
     }
 
-    public void setViewVisibility(boolean isVisible) {
-        Log.d(TAG, "setViewVisibility: " + isVisible);
+    public void setIsViewLoading(boolean isVisible) {
+        Log.d(TAG, "setIsViewLoading: " + isVisible);
 
         progressBar.setVisibility(isVisible ? View.VISIBLE : View.GONE);
         imageView.setVisibility(isVisible ? View.GONE : View.VISIBLE);

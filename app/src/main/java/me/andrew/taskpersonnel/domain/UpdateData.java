@@ -13,6 +13,7 @@ import me.andrew.taskpersonnel.data.Employee;
 import me.andrew.taskpersonnel.data.Repository;
 import me.andrew.taskpersonnel.data.network.EmployeeRestAnswer;
 import me.andrew.taskpersonnel.data.network.Response;
+import me.andrew.taskpersonnel.data.network.SixtyFiveAppsRestService;
 import me.andrew.taskpersonnel.util.JsonToEntityConverter;
 
 /**
@@ -21,8 +22,11 @@ import me.andrew.taskpersonnel.util.JsonToEntityConverter;
 
 public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Employee>> {
 
-    public UpdateData(Repository repository) {
+    private SixtyFiveAppsRestService service;
+
+    public UpdateData(Repository repository, SixtyFiveAppsRestService service) {
         super(repository);
+        this.service = service;
     }
 
     @Override
@@ -65,7 +69,7 @@ public class UpdateData extends UseCase<UpdateData.RequestValues, Iterable<Emplo
         Log.d(this.getClass().getSimpleName(), "flatMap -> getNetworkData");
         return Single.just(Observable.empty())
                 .observeOn(Schedulers.io())
-                .flatMap(unused -> repository.getFile());
+                .flatMap(unused -> service.getFile());
     }
 
     /**

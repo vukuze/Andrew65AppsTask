@@ -11,9 +11,7 @@ import io.reactivex.disposables.Disposable;
 import me.andrew.taskpersonnel.di.Injector;
 import ru.terrakok.cicerone.Router;
 
-public abstract class BasePresenter<View extends MvpView>
-        extends MvpPresenter<View>
-        implements Injector {
+public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<View> implements Injector {
 
     @Inject
     public Router router;

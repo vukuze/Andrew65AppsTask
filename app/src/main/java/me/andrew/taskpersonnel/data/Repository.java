@@ -1,8 +1,5 @@
 package me.andrew.taskpersonnel.data;
 
-import me.andrew.taskpersonnel.data.network.Response;
-import me.andrew.taskpersonnel.data.network.SixtyFiveAppsRestService;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,22 +9,12 @@ import io.reactivex.schedulers.Schedulers;
 import io.requery.Persistable;
 import io.requery.reactivex.ReactiveEntityStore;
 
-/**
- *
- */
-
 public class Repository {
 
     private ReactiveEntityStore<Persistable> db;
-    private SixtyFiveAppsRestService service;
 
-    public Repository(ReactiveEntityStore<Persistable> db, SixtyFiveAppsRestService service) {
+    public Repository(ReactiveEntityStore<Persistable> db) {
         this.db = db;
-        this.service = service;
-    }
-
-    public Single<Response> getFile() {
-        return service.getFile();
     }
 
     public void emptyDB() {

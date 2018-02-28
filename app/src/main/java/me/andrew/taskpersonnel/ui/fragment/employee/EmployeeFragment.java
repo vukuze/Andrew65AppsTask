@@ -168,15 +168,16 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
             this.employees = employees;
         }
 
+        @NonNull
         @Override
-        public EmployeeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public EmployeeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             View view = inflater.inflate(R.layout.list_item_employee, parent, false);
             return new EmployeeHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(EmployeeHolder holder, int position) {
+        public void onBindViewHolder(@NonNull EmployeeHolder holder, int position) {
             Employee employee = employees.get(position);
 
             CardView cardView = (CardView) holder.itemView;
