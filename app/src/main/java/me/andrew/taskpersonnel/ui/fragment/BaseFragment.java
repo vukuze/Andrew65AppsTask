@@ -37,7 +37,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment
 
         BaseActivity activity = (BaseActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle(setActionBarTitle());
+            activity.getSupportActionBar().setTitle(changeActionBarTitle());
         }
     }
 

@@ -17,6 +17,7 @@ import me.andrew.taskpersonnel.presentation.presenter.employee.EmployeeActivityP
 import me.andrew.taskpersonnel.presentation.view.employee.EmployeeActivityView;
 import me.andrew.taskpersonnel.ui.activity.BaseActivity;
 import me.andrew.taskpersonnel.ui.fragment.employee.DetailsFragment;
+import ru.terrakok.cicerone.Navigator;
 
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static me.andrew.taskpersonnel.ui.fragment.specialty.SpecialtyFragment.SPECIALTY_NOT_DEFINED;
@@ -53,10 +54,8 @@ public class EmployeeActivity extends BaseActivity implements EmployeeActivityVi
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        this.navigator = new EmployeeActivityNavigator(this, getSupportFragmentManager());
+    public Navigator createNavigator() {
+        return new EmployeeActivityNavigator(this, getSupportFragmentManager());
     }
 
     @Override

@@ -17,6 +17,7 @@ import me.andrew.taskpersonnel.presentation.presenter.employee.DetailsActivityPr
 import me.andrew.taskpersonnel.presentation.view.employee.DetailsActivityView;
 import me.andrew.taskpersonnel.ui.activity.BaseActivity;
 import me.andrew.taskpersonnel.ui.fragment.employee.DetailsFragment;
+import ru.terrakok.cicerone.Navigator;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static me.andrew.taskpersonnel.ui.fragment.employee.EmployeeFragment.EMPLOYEE_NOT_DEFINED;
@@ -53,12 +54,16 @@ public class DetailsActivity extends BaseActivity implements DetailsActivityView
     }
 
     @Override
+    public Navigator createNavigator() {
+        return new DetailsActivityNavigator(this, getSupportFragmentManager(), R.id.fragmentContainer);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
             finish();
         }
         super.onCreate(savedInstanceState);
-        this.navigator = new DetailsActivityNavigator(this, getSupportFragmentManager(), R.id.fragmentContainer);
     }
 
     @Override

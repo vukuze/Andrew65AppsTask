@@ -2,9 +2,8 @@ package me.andrew.taskpersonnel.domain;
 
 import android.util.Log;
 
-import me.andrew.taskpersonnel.data.Repository;
-
 import io.reactivex.Single;
+import me.andrew.taskpersonnel.data.Repository;
 
 public abstract class UseCase<Param extends UseCase.RequestValues, Result> {
 

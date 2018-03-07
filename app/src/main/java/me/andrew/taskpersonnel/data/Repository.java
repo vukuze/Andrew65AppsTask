@@ -1,7 +1,5 @@
 package me.andrew.taskpersonnel.data;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -33,24 +31,18 @@ public class Repository {
                 .toList();
     }
 
-    public Single<List<Employee>> getEmployees(int specialtyId) {
-        return db.select(Specialty.class)
-                .where(Specialty.ID.eq(specialtyId))
+    public Single<List<Employee>> getEmployees(int specialtyId, int limit, int offset) {
+        return db.select(Employee.class)
+                .join(Specialty_Employee.class).on(Employee.ID.equal(Specialty_Employee.EMPLOYEE_ID))
+                .join(Specialty.class).on(Specialty_Employee.SPECIALTY_ID.equal(Specialty.ID))
+                .where(Specialty.ID.equal(specialtyId))
+                .orderBy(Employee.L_NAME.asc())
+                .limit(limit)
+                .offset(offset)
                 .get()
                 .observable()
-                .firstOrError()
                 .observeOn(Schedulers.computation())
-                .map(specialty -> {
-                    ArrayList<Employee> employees = new ArrayList<>();
-                    for (AbstractEmployee abstractEmployee : specialty.getEmployees()) {
-                        employees.add((Employee) abstractEmployee);
-                    }
-                    return employees;
-                })
-                .map(employees -> {
-                    Collections.sort(employees, (o1, o2) -> o1.getLName().compareTo(o2.getLName()));
-                    return employees;
-                });
+                .toList();
     }
 
     public Single<Employee> getEmployeeDetails(int employeeId) {

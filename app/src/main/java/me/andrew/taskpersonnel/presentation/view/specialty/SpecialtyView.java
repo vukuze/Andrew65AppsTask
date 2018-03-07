@@ -6,7 +6,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import java.util.List;
 
-@StateStrategyType(SingleStateStrategy.class)
 public interface SpecialtyView extends MvpView {
+    @StateStrategyType(SingleStateStrategy.class)
     void updateItems(List<me.andrew.taskpersonnel.data.Specialty> specialties);
 }

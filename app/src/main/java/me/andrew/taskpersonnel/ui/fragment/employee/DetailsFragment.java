@@ -3,6 +3,7 @@ package me.andrew.taskpersonnel.ui.fragment.employee;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -26,12 +28,13 @@ import me.andrew.taskpersonnel.data.Employee;
 import me.andrew.taskpersonnel.data.Specialty;
 import me.andrew.taskpersonnel.presentation.presenter.employee.DetailsPresenter;
 import me.andrew.taskpersonnel.presentation.view.employee.DetailsView;
-import me.andrew.taskpersonnel.ui.adapter.specialty.BaseSpecialtyAdapter;
+import me.andrew.taskpersonnel.ui.adapter.employee.SpecialtyAdapter;
 import me.andrew.taskpersonnel.ui.fragment.BaseFragment;
 import me.andrew.taskpersonnel.ui.view.employee.DoubleTextView;
-import me.andrew.taskpersonnel.ui.view.specialty.BaseSpecialtyHolder;
 import me.andrew.taskpersonnel.util.DateToStringFormatter;
 import me.andrew.taskpersonnel.util.GlideLoggingListener;
+
+import static me.andrew.taskpersonnel.ui.fragment.employee.EmployeeFragment.EMPLOYEE_NOT_DEFINED;
 
 public class DetailsFragment extends BaseFragment implements DetailsView {
 
@@ -43,21 +46,18 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
 
     @BindView(R.id.employee_fname)
     DoubleTextView firstNameView;
-
     @BindView(R.id.employee_lname)
     DoubleTextView lastNameView;
-
     @BindView(R.id.employee_birthday)
     DoubleTextView birthdayView;
-
     @BindView(R.id.employee_age)
     DoubleTextView ageView;
-
     @BindView(R.id.employee_avatr)
     ImageView avatarImageView;
-
     @BindView(R.id.fragment_specialty_recycler_view)
     RecyclerView specialtiesRecyclerView;
+
+    private SpecialtyAdapter specialtyAdapter;
 
     public static Fragment newInstance(int employeeId) {
         Bundle args = new Bundle();
@@ -67,13 +67,24 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
         return fragment;
     }
 
+    @ProvidePresenter
+    DetailsPresenter provideDetailsPresenter() {
+        final Bundle arguments = getArguments();
+        int employeeId = EMPLOYEE_NOT_DEFINED;
+        if (arguments != null) {
+            employeeId = arguments.getInt(ARG_EMPLOYEE_ID);
+        }
+        return new DetailsPresenter(employeeId);
+    }
+
     @Override
     public void inject() {
         App.getDetailsComponent().inject(this);
     }
 
+    @StringRes
     @Override
-    public int setActionBarTitle() {
+    public int changeActionBarTitle() {
         return R.string.fragment_details_name;
     }
 
@@ -87,17 +98,10 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(new ArrayList<>()));
+        specialtyAdapter = new SpecialtyAdapter();
+
         specialtiesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        final Bundle arguments = getArguments();
-
-        int employeeId = 0;
-        if (arguments != null) {
-            employeeId = arguments.getInt(ARG_EMPLOYEE_ID);
-        }
-
-        detailsPresenter.setEmployeeId(employeeId);
+        specialtiesRecyclerView.setAdapter(specialtyAdapter);
     }
 
     /**
@@ -115,7 +119,7 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
         for (AbstractSpecialty abstractSpecialty : employee.getSpecialties()) {
             items.add((Specialty) abstractSpecialty);
         }
-        specialtiesRecyclerView.setAdapter(new SpecialtyAdapter(items));
+        specialtyAdapter.replaceList(items);
 
         Glide.with(this)
                 .load(employee.getAvatrUrl())
@@ -128,17 +132,5 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     @Override
     public void onBackPressed() {
         detailsPresenter.onBackCommandClick();
-    }
-
-    private class SpecialtyAdapter extends BaseSpecialtyAdapter<BaseSpecialtyHolder> {
-
-        SpecialtyAdapter(List<Specialty> specialties) {
-            super(specialties);
-        }
-
-        @Override
-        public BaseSpecialtyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new BaseSpecialtyHolder(inflate(parent, viewType));
-        }
     }
 }

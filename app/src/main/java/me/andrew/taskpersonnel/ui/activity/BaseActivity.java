@@ -9,12 +9,11 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import javax.inject.Inject;
 
 import me.andrew.taskpersonnel.R;
-import me.andrew.taskpersonnel.di.Injector;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.commands.Back;
 
-public abstract class BaseActivity extends MvpAppCompatActivity implements Injector {
+public abstract class BaseActivity extends MvpAppCompatActivity {//implements Injector {
 
     protected Navigator navigator;
 
@@ -26,15 +25,20 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements Injec
         return R.layout.activity_fragment;
     }
 
+    public abstract void inject();
+
+    public abstract Navigator createNavigator();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Log.d(this.getClass().getSimpleName(), "onCreate");
 
         inject();
 
         setContentView(getLayoutResId());
+
+        navigator = createNavigator();
     }
 
     @Override

@@ -4,20 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/employee_cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
+    app:cardBackgroundColor="@color/selector_cardview_colors"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
-    app:contentPaddingBottom="10dp"
-    app:cardBackgroundColor="@color/colorDefaultBackground">
+    app:contentPaddingBottom="10dp">
 
     <LinearLayout
-        style="@style/AppMargins"
         android:id="@+id/employee_linearLayout"
+        style="@style/AppMargins"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/item_employee_lname_text_view"
@@ -32,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1" />
 
         <TextView
@@ -40,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1" />
 
     </LinearLayout>
