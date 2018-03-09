@@ -31,13 +31,13 @@ public class SplashPresenter extends BasePresenter<SplashView> {
     }
 
     public void request() {
-        getViewState().setIsViewLoading(true);
-        setDisposable(networkData
+        getViewState().setViewLoadingState(true);
+        setRequestDisposable(networkData
                 .executeUseCase(new UpdateData.RequestValues())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         employees -> router.replaceScreen(Screens.SPECIALTY_ACTIVITY),
-                        throwable -> getViewState().setIsViewLoading(false)));
+                        throwable -> getViewState().setViewLoadingState(false)));
     }
 }

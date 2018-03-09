@@ -2,6 +2,8 @@ package me.andrew.taskpersonnel.presentation.presenter.specialty;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -15,6 +17,8 @@ import me.andrew.taskpersonnel.presentation.view.specialty.SpecialtyView;
 @InjectViewState
 public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
 
+    private static final String LOADING_SPECIALTIES_ERROR = "Произошла ошибка при загрузке данных";
+
     @Inject
     GetSpecialties getSpecialties;
 
@@ -27,12 +31,15 @@ public class SpecialtyPresenter extends BasePresenter<SpecialtyView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
 
-        // TODO: 16.02.2018 в случае ошибки тут что-то не должно работать
-        setDisposable(getSpecialties
+        setRequestDisposable(getSpecialties
                 .executeUseCase(new GetSpecialties.RequestValues())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(specialties -> getViewState().updateItems(specialties)));
+                .subscribe(specialties -> getViewState().updateItems(specialties),
+                        throwable -> {
+                            router.showSystemMessage(LOADING_SPECIALTIES_ERROR);
+                            getViewState().updateItems(new ArrayList<>());
+                        }));
     }
 
     public void onClick(int specialtyId) {

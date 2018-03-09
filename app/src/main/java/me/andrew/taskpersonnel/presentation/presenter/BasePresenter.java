@@ -16,7 +16,7 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
     @Inject
     public Router router;
 
-    private Disposable disposable = null;
+    private Disposable requestDisposable = null;
 
     public BasePresenter() {
         super();
@@ -32,21 +32,24 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
         Log.d(this.getClass().getSimpleName(), "onFirstViewAttach");
     }
 
-    protected void setDisposable(Disposable disposable) {
-        disposeChain();
-        this.disposable = disposable;
+    protected void setRequestDisposable(Disposable disposable) {
+        disposeChain(requestDisposable);
+        this.requestDisposable = disposable;
     }
 
     public void onBackCommandClick() {
         Log.d(this.getClass().getSimpleName(), "onBackCommandClick");
-        disposeChain();
+        disposeChain(requestDisposable);
     }
 
-    private void disposeChain() {
-        if (disposable != null && !disposable.isDisposed()) {
-            // TODO: непонятно как остановить выполнение цепочки
+    protected void disposeChain(Disposable disposable) {
+        if (existSubscription(disposable)) {
             disposable.dispose();
             Log.d(this.getClass().getSimpleName(), "disposeChain disposable.dispose()");
         }
+    }
+
+    private boolean existSubscription(Disposable disposable) {
+        return (disposable != null && !disposable.isDisposed());
     }
 }

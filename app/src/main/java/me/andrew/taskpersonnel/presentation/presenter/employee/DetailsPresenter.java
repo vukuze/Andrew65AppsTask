@@ -34,7 +34,7 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
 
-        setDisposable(getEmployeeDetails.executeUseCase(new GetEmployeeDetails.RequestValues(employeeId))
+        setRequestDisposable(getEmployeeDetails.executeUseCase(new GetEmployeeDetails.RequestValues(employeeId))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(employee -> getViewState().updateItems(employee)));

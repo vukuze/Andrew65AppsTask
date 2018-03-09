@@ -3,13 +3,18 @@ package me.andrew.taskpersonnel.presentation.presenter.employee;
 import android.support.v7.widget.RecyclerView;
 
 import com.arellomobile.mvp.InjectViewState;
+import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewChildAttachEvent;
+import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewChildAttachStateChangeEvent;
+import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.andrew.taskpersonnel.App;
 import me.andrew.taskpersonnel.data.Employee;
@@ -31,11 +36,22 @@ public class EmployeePresenter extends BasePresenter<EmployeeView> {
     private int selectedPosition = RecyclerView.NO_POSITION;
     private int specialtyId;
     private int employeeId = EMPLOYEE_NOT_DEFINED;
-
+    private Disposable scrollDisposable;
+    private Disposable childAttachStateDisposable;
     private List<Employee> employees = new ArrayList<>();
 
     public EmployeePresenter(int specialtyId) {
         this.specialtyId = specialtyId;
+    }
+
+    private void setScrollDisposable(Disposable scrollDisposable) {
+        disposeChain(this.scrollDisposable);
+        this.scrollDisposable = scrollDisposable;
+    }
+
+    private void setChildAttachStateDisposable(Disposable childAttachStateDisposable) {
+        disposeChain(this.childAttachStateDisposable);
+        this.childAttachStateDisposable = childAttachStateDisposable;
     }
 
     public int getSelectedPosition() {
@@ -64,7 +80,7 @@ public class EmployeePresenter extends BasePresenter<EmployeeView> {
             return;
 
         final int LIMIT = 6;
-        setDisposable(getEmployees
+        setRequestDisposable(getEmployees
                 .executeUseCase(new GetEmployees.RequestValues(specialtyId, LIMIT, offset))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,9 +96,31 @@ public class EmployeePresenter extends BasePresenter<EmployeeView> {
                 }));
     }
 
+    public void rxScrollEvents(Observable<RecyclerViewScrollEvent> eventObservable) {
+        setScrollDisposable(eventObservable
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(event -> getViewState().updateScroll()));
+    }
+
+    public void rxChildAttachStateChangeEvents(Observable<RecyclerViewChildAttachStateChangeEvent> eventObservable) {
+        setChildAttachStateDisposable(eventObservable
+                .filter(recyclerViewChildAttachStateChangeEvent -> recyclerViewChildAttachStateChangeEvent instanceof RecyclerViewChildAttachEvent)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(event -> getViewState().updateChildAttachState(event.child())));
+    }
+
     public void onClick(int selectedPosition, int employeeId) {
         this.selectedPosition = selectedPosition;
         this.employeeId = employeeId;
+
         showDetailsFragment();
+    }
+
+    @Override
+    public void onBackCommandClick() {
+        super.onBackCommandClick();
+
+        disposeChain(scrollDisposable);
+        disposeChain(childAttachStateDisposable);
     }
 }

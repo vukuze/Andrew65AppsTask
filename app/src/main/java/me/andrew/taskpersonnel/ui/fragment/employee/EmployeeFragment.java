@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.jakewharton.rxbinding2.support.v7.widget.RxRecyclerView;
 
 import java.util.List;
 
@@ -86,39 +87,8 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
         employeeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         employeeRecyclerView.setAdapter(employeeAdapter);
 
-        employeeRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE)
-                    return;
-
-                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                int visibleItemCount = layoutManager.getChildCount();
-                int totalItemCount = layoutManager.getItemCount();
-                int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
-
-                if (visibleItemCount + pastVisibleItems >= totalItemCount) {
-                    employeePresenter.request();
-                }
-            }
-        });
-
-        employeeRecyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
-                Log.d(TAG, "onChildViewAttachedToWindow, getSelectedPosition(): " + employeePresenter.getSelectedPosition()
-                        + ", getChildAdapterPosition(): " + employeeRecyclerView.getChildAdapterPosition(view));
-
-                view.setSelected(employeePresenter.getSelectedPosition() == employeeRecyclerView.getChildAdapterPosition(view));
-            }
-
-            @Override
-            public void onChildViewDetachedFromWindow(View view) {
-
-            }
-        });
+        employeePresenter.rxScrollEvents(RxRecyclerView.scrollEvents(employeeRecyclerView));
+        employeePresenter.rxChildAttachStateChangeEvents(RxRecyclerView.childAttachStateChangeEvents(employeeRecyclerView));
     }
 
     /**
@@ -127,11 +97,34 @@ public class EmployeeFragment extends BaseFragment implements EmployeeView {
     @Override
     public void updateItems(List<Employee> employees) {
         Log.d(TAG, "updateItems");
-        // TODO: 02.03.2018 save first visible position and show it
         employeeAdapter.replaceList(employees);
 
         if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE)
             employeePresenter.showDetailsFragment();
+    }
+
+    @Override
+    public void updateScroll() {
+        // срабатывает при первом добавлении элеменетов в список
+        if (employeeRecyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE)
+            return;
+
+        LinearLayoutManager layoutManager = (LinearLayoutManager) employeeRecyclerView.getLayoutManager();
+        int visibleItemCount = layoutManager.getChildCount();
+        int totalItemCount = layoutManager.getItemCount();
+        int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+
+        if (visibleItemCount + pastVisibleItems >= totalItemCount) {
+            employeePresenter.request();
+        }
+    }
+
+    @Override
+    public void updateChildAttachState(View childView) {
+        Log.d(TAG, "updateChildAttachState, getSelectedPosition(): " + employeePresenter.getSelectedPosition()
+                + ", getChildAdapterPosition(): " + employeeRecyclerView.getChildAdapterPosition(childView));
+
+        childView.setSelected(employeePresenter.getSelectedPosition() == employeeRecyclerView.getChildAdapterPosition(childView));
     }
 
     @Override
