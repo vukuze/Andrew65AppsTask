@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import me.andrew.taskpersonnel.presentation.presenter.specialty.SpecialtyPresenter;
-import me.andrew.taskpersonnel.ui.view.specialty.BaseSpecialtyHolder;
 
 /**
  * SpecialtyAdapter с реализацией View.OnClickListener в SpecialtyHolder
@@ -27,7 +26,7 @@ public class SpecialtyAdapter extends BaseSpecialtyAdapter<SpecialtyAdapter.Spec
     /**
      * SpecialtyHolder, в котором implements View.OnClickListener
      */
-    class SpecialtyHolder extends BaseSpecialtyHolder implements View.OnClickListener {
+    class SpecialtyHolder extends BaseSpecialtyAdapter.BaseSpecialtyHolder implements View.OnClickListener {
 
         SpecialtyHolder(View itemView) {
             super(itemView);
